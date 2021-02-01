@@ -1,3 +1,6 @@
+# Temporary folder
+tmp
+
 # Prerequisites
 *.d
 
@@ -27,6 +30,7 @@
 *.lib
 
 # Executables
+main
 *.exe
 *.out
 *.app
