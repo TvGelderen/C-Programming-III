@@ -27,18 +27,17 @@ struct Demo
     string str;
 };
 
-void fun2(Demo &&dem1, Demo &&dem2)
+void fun(Demo &&dem1, Demo &&dem2)
 {
     cout << "dem1: " << dem1.str << " dem2: " << dem2.str << '\n';
 }
 
 int main()
 {
-    forwarder(fun, 1, 3);       // should show 'fun(1, 3)' to cout
+    forwarder<void(int, int)>(fun,  1, 3);       // should show 'fun(1, 3)' to cout
     // cout << forwarder(plus<string>(), "hello ", "world");
-
                              // fun2 expects two rvalue references 
-    forwarder(fun2, Demo{"hello"}, Demo{"World"});
+    forwarder<void(Demo &&, Demo &&)>(fun, Demo{"hello"}, Demo{"World"});
 
     forwarder(plus<string>(), "hello ", "world");   //note we ini
 
