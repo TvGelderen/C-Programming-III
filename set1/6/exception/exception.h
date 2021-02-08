@@ -2,6 +2,7 @@
 #define INCLUDED_EXCEPTION_
 
 #include <string>
+#include <sstream>
 #include <exception>
 
 class Exception: public std::exception
@@ -14,14 +15,25 @@ class Exception: public std::exception
         template <typename T>
         friend Exception &&operator<<(Exception &&in, T rhs);
 
+        template <typename T>
+        std::string to_string(const T &value);
+
         char const *what() const noexcept(true) override;   
 };
 
 template <typename T>
 inline Exception &&operator<<(Exception &&in, T rhs)
 {
-    in.d_what  += rhs;                        //std::to_string
+    in.d_what  += in.to_string(rhs);                        //std::to_string
     return std::move(in);
+}
+
+template <typename T>
+inline  std::string Exception::to_string(const T &value)
+{
+    std::stringstream stream;
+    stream << value;
+    return stream.str();
 }
 
 #endif
