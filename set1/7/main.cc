@@ -4,7 +4,7 @@
 using namespace std;
 
 template<typename T>
-ostream &operator<<(ostream &out, set<T> const &&Set)
+ostream &operator<<(ostream &out, set<T> const &Set)
 {
     out << '{';                          //the first opening bracket
     for (auto elem : Set)
