@@ -1,0 +1,1 @@
+Using a template for the index operator, any type that can be cast to a size_t can now be passed as the index.

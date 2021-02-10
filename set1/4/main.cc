@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 void fun(int first, int second)
 {
     cout << "Fun: " << first + second << '\n';
@@ -36,7 +35,7 @@ int main()
 {
     forwarder<void(int, int)>(fun,  1, 3);       // should show 'fun(1, 3)' to cout
     // cout << forwarder(plus<string>(), "hello ", "world");
-                             // fun2 expects two rvalue references 
+                             // fun2 expects two rvalue references
     forwarder<void(Demo &&, Demo &&)>(fun, Demo{"hello"}, Demo{"World"});
 
     forwarder(plus<string>(), "hello ", "world");   //note we ini
@@ -44,10 +43,10 @@ int main()
     vector<int> first = {1,2,3};
 
     forwarder(                  // receives a lambda function
-        [](vector<int> &first, vector<int> const &second, 
+        [](vector<int> &first, vector<int> const &second,
                                     vector<int> const &third)
         {
-            first.push_back(inner_product(second.begin(),second.end(), third.begin(), 0));
+            first.push_back(inner_product(second.begin(), second.end(), third.begin(), 0));
                 // elements
         }, first, vector<int>{3,4,5}, vector<int>{6,7,8}
     );

@@ -1,10 +1,11 @@
 #include <iostream>
 
-using namespace std; 
+using namespace std;
 
 template <typename T, typename U>
-T as (U &value) {
- return static_cast<T>(value);
+T as(U &value)
+{
+    return static_cast<T>(value);
 }
 
 int main()

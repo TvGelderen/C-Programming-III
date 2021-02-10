@@ -1,0 +1,9 @@
+Used codes to link/compile:
+
+g++ -Wall -Werror -o source1.o -c source1.cc
+g++ -Wall -Werror -o source2.o -c source2.cc
+g++ -Wall -Werror -o main.o -c main.cc
+g++ -Wall -Werror -o main1 main.o source1.o
+g++ -Wall -Werror -o main2 main.o source2.o
+
+Note that source1.o 3160 bytes > source2.o 2856 bytes. This is due to the fact source1 contains the initiation of add. Both programs however have the same size: 17.440 bytes. Also the adresses of the functions are the same. Hence we can conclude that the linker removed indentical instantiations from the final program. 

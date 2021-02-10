@@ -1,0 +1,5 @@
+Why should the function template not use a double ampersand for the second parameter?
+
+    The compiler cannot convert an lvalue reference of a set to an rvalue reference thereof.
+
+    
