@@ -9,7 +9,6 @@ class CPU
     public:
         void push(int opcodeByte);          //execute opcodes
 
-    private:
         void jmp();             //     00
         void jmpFalse();        //     01
         void jmpTrue();         //     02
@@ -25,6 +24,7 @@ class CPU
         void exit() const;      //     1d
         void noop() const;      //     0c - 1c
 
+    private:
         void exitHelper(); 
         void noopHelper();
 };
