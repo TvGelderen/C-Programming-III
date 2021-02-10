@@ -4,5 +4,5 @@ int main()
 {
     CPU cpu;
 
-    cpu.push(15);
+    cpu.push(0x1d);     // call to exit
 }
