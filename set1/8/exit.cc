@@ -1,6 +1,6 @@
 #include "cpu.ih"
 
-void CPU::exit()
+void CPU::exit() const
 {
     cout << "Exiting.." << '\n';
 }
