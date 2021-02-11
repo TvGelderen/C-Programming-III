@@ -1,0 +1,1 @@
+Since there is no way the compiler can deduce the type, it needs to be specified between angled brackets. Using a static_cast the void pointer is changed to a T pointer.
