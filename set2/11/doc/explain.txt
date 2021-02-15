@@ -1,0 +1,6 @@
+Using a static variable for only one template type parameter (void) and making the static variables public we can achieve template type indifferent count/actual.
+
+Output:
+
+    count:  4
+    actual: 3
