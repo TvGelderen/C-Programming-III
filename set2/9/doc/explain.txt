@@ -1,0 +1,2 @@
+The code for the member functions is located in header files so that the template will work. These header files are then included in the main header of the class.
+We defined a swap member to make the assignment operators a bit more neat.

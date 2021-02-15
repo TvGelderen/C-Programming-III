@@ -1,0 +1,14 @@
+doc/explain.txt
+
+main.cc
+
+unique/unique.h
+unique/unique.ih
+unique/unique1.h
+unique/unique2.h
+unique/unique3.h
+unique/operatorassign1.h
+unique/operatorassign2.h
+unique/swap.h
+unique/get1.h
+unique/get2.h
