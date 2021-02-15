@@ -1,0 +1,7 @@
+Due to the small size of the functions they are in a single header file. Each different template type parameter has it's respective s_count and s_actual values as is demonstrated by the output of the simple main program.
+
+Output:
+
+    count<int>:  3
+    actual<int>: 2
+    count<string>: 1
