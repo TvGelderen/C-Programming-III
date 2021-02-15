@@ -1,17 +1,3 @@
-#ifndef _INCLUDED_STORAGE_
-#define _INCLUDED_STORAGE_
+#include "storage.h"
 
-template <typename Data>
-class Storage
-{
-    std::vector<Data *> d_storage;
-
-    public:
-            Storage()
-            push_back(Data const &value)
-            
-            // the usual stuff goes here
-
-};
-
-#endif
+using namespace std;
