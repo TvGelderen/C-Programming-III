@@ -7,7 +7,7 @@ template<typename T>
 ostream &operator<<(ostream &out, set<T> const &Set)
 {
     out << '{';                          //the first opening bracket
-    for (auto elem : Set)
+    for (auto &elem : Set)               
     {
         out << elem;                    // display elems
         if (elem != *Set.rbegin())
