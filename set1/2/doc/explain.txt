@@ -1,1 +1,3 @@
 Using two template type parameters we can use the function template static_cast inside the new function template as.
+
+Note: The feedback said our first attempt wouldn't accept rvalues, so we changed the function template to accept &&. The compiler deduces rvalues correctly now. 
