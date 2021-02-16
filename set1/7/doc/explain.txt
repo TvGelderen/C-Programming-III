@@ -1,5 +1,10 @@
 Why should the function template not use a double ampersand for the second parameter?
 
-    The compiler cannot convert an lvalue reference of a set to an rvalue reference thereof.
+The compiler cannot convert an lvalue reference of a set to an rvalue reference thereof.
 
-    
+Submition 2 
+Feedback: JB Why does it even try? Shouldn't it be perfect-forwarding?
+
+The answer lies in section 21.9.3 of the annotations. For a basic type operator<< is a plain function, but using it for a set type it is definded as a template. When we try to insert 'universe' in cout the compiler will look for all overloaded functions of operator<<. When using &Set the compiler will correctly use our overloaded function. But when using &&Set it will fail since there is no known conversion. 
+
+We also fixed the by value error in auto elem.
