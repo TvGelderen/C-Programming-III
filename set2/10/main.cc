@@ -1,4 +1,4 @@
-#include "counter.h"
+#include "counter.ih"
 #include <string>
 
 using namespace std;

@@ -18,14 +18,9 @@ class Counter
             void show();
 };
 
-#include "counter1.h"
-#include "counter2.h"
-#include "counter3.h"
-#include "show.h"  
-
-#endif
-
 template <typename Type>
 size_t Counter<Type>::s_count = 0;                //declaration != definition
 template <typename Type>
 size_t Counter<Type>::s_actual = 0;                //declaration != definition
+
+#endif
