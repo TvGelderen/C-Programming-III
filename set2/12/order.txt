@@ -1,0 +1,14 @@
+doc/explain.txt
+
+main.cc
+
+simple/simple.h
+simple/simple.ih
+simple/simple1.h
+simple/simple2.h
+simple/get.h
+
+simple_ptr/simple.h
+simple_ptr/simple.ih
+simple_ptr/simple1.h
+simple_ptr/get.h

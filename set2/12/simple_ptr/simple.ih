@@ -1,0 +1,4 @@
+#include "simple.h"
+#include <iostream>
+
+using namespace std;
