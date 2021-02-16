@@ -6,3 +6,10 @@ forwarder<void(int, int)>(fun,  1, 3);
 forwarder<void(Demo &&, Demo &&)>(fun, Demo{"hello"}, Demo{"World"});
 
 This ensures the right version of forwarder is being called. 
+
+
+Submition2:
+We received the following feedback: 
+//JB: Won't work if fun can't be copied. (It may be an object with a function
+//JB: call operator, you know....)
+This is indeed true. The problem is that we used Fun fun instead of Fun &&fun. We changed this and added an example of a non copyable object that has a () operator. The function is still accepted by the forwarder as it show "7". Note that without && we get error saying the object can't be copied. We also made this mistake in 2. 
