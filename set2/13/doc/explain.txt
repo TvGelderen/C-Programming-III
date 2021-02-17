@@ -1,0 +1,1 @@
+The added push_back member allows back_inserter to be used on an object of Data, this is demonstrated by both applying it in the constructor accepting an istream reference and in the main function.

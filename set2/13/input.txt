@@ -1,0 +1,21 @@
+Purpose of this exercise: learn to use back_inserter with a home-made class
+
+Consider the following class skeleton:
+
+
+    class Data
+    {
+        typedef std::vector<std::shared_ptr<std::string>> DataVector;
+
+        DataVector d_data;
+
+        public:
+            // declare push_back here
+    };
+
+
+Objects of the class Data store pointer to lines in the vector d_data, and provide a push_back member to fill the object with lines of text.
+
+Implement push_back and show how the copy generic algorithm can be used to fill a Data object with lines read from an istream.
+
+Submit the interface of the class Data, the implementation of push_back and a demo program showing its use in combination with the copy generic algorithm. 
