@@ -1,4 +1,5 @@
 #include "storage.h"
 #include "push_back.h" 
+#include <string>
 
 using namespace std;
