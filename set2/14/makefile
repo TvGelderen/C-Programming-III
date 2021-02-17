@@ -6,7 +6,7 @@
 # https://www.gnu.org/software/make/manual/html_node/Reading-Makefiles.html
 
 # If no flags are set (?=), use at least these.
-CXXFLAGS += -Wall -Werror -std=c++2a
+CXXFLAGS += --std=c++2a -Wall -Werror
 
 # If non-C++ programs must be built, append them to this line.
 PROGRAMS = $(CXX_PROGRAMS)

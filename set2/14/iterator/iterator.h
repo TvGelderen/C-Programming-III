@@ -5,7 +5,7 @@ template <typename Data>
 class Storage<Data>::iterator: public std::iterator<std::random_access_iterator_tag, Data>
 {
     friend class Storage<Data>;
-    
+
     std::vector<Data *>::iterator d_current;
 
     iterator(std::vector<Data *>::iterator current);
@@ -32,7 +32,7 @@ class Storage<Data>::iterator: public std::iterator<std::random_access_iterator_
 };
 
 template <typename Data>
-Storage<Data>::iterator::iterator(std::vector<Data *>::iterator current):
+inline Storage<Data>::iterator::iterator(std::vector<Data *>::iterator current):
     d_current(current)
 {}
 
