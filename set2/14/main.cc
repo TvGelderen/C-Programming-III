@@ -19,11 +19,6 @@ int main()
     copy(storage.begin(), storage.end(), ostream_iterator<string>(cout, " "));
         cout << '\n';
 
-    sort(storage.rbegin(), storage.rend());     //sort the vector
-                                                //display the results!
-    copy(storage.begin(), storage.end(), ostream_iterator<string>(cout, " "));
-        cout << '\n';
-
     //second example with ints :D
     Storage<int> storage2;
     storage2.push_back(5);
