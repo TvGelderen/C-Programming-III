@@ -1,3 +1,9 @@
 doc/explain.txt
 
 main.cc
+
+storage/storage.h
+storage/destructor.h
+storage/push_back.h
+
+iterator/iterator.h
