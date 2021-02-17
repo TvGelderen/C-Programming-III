@@ -1,5 +1,3 @@
 #include "storage.h"
-#include "push_back.h" 
-#include "storage1.h" 
 
 using namespace std;
