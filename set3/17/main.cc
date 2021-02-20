@@ -13,10 +13,14 @@ struct NrTrait
         width = 1 + NrTrait<nr / 10>::width         // compute width recursively!
     };
 };
+
 template <>
 struct NrTrait<0>
 {
-    enum { width = 0 };              //stopping specialization for recursion!
+    enum 
+    { 
+        width = 0                                  //stopping specialization for recursion!
+    };             
 };
 
 int main()
