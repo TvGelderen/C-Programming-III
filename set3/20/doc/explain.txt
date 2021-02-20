@@ -1,0 +1,25 @@
+Our solution works as follows: 
+
+It is called with a variadic param pack. Now there are 3 cases:
+
+- needle only                          : the not found case
+- needle + needle type + extra params  : the found case
+- needle + other type + extra params   : the generic/search case
+
+If the first 2 types are equal, <needle, needle, types> is called, this will have value 1. 
+If there is only one parameter, the needle was not found and this will have value 0. 
+If the first 2 types are not equal we have to search further. The search algorithm is designed such that it collapses to 0 if the next recursion equals 0 and 1 + the accumulated value otherwise. 
+
+An example: 
+
+<int, double, double, int> located = 1 + <int, double, int>::located = 1 + 2 = 3
+<int, double, int>      -> located = 1 + <int, int>::located = 2
+<int, int>              -> located = 1
+
+So the index is 3. A not found example:
+
+<int, double, double, double> located = 0 (because below is 0)
+<int, double, double>      -> located = 0 (because below is 0)
+<int, double>              -> located = 0
+
+Note <type> will always result in 0 as it is the stopping case.
