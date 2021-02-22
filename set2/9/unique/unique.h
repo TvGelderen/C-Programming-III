@@ -22,16 +22,14 @@ class Unique
         T const &get() const;
 };
 
+#include "unique.h"
 #include "unique1.h"
 #include "unique2.h"
 #include "unique3.h"
-
 #include "operatorassign1.h"
 #include "operatorassign2.h"
-
 #include "swap.h"
-
 #include "get1.h"
-#include "get2.h"
+#include "get2.h"       // This will include all required function definitions
 
 #endif
