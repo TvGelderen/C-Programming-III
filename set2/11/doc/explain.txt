@@ -1,4 +1,4 @@
-Using a static variable for only one template type parameter (void) and making the static variables public we can achieve template type indifferent count/actual.
+We have two methods to fix this problem. The first one uses a static variable with <void> template. The second method demonstrated here uses a base class global counter. This base class is first constructed by all templates, hence it acts as a global counter. The layout is exactly the same as the regular counter. Since public inheritance is used, we can use its public members. 
 
 Output:
 
