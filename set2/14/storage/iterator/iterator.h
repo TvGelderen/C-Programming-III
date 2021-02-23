@@ -1,13 +1,14 @@
 #ifndef _INCLUDED_ITERATOR_
 #define _INCLUDED_ITERATOR_
 
+#include <iterator>
+
 template <typename Data>
 class Storage<Data>::iterator: public std::iterator<std::random_access_iterator_tag, Data>
 {
     friend class Storage<Data>;
 
     std::vector<Data *>::iterator d_current;
-
     iterator(std::vector<Data *>::iterator current);
 
     public:
@@ -29,6 +30,7 @@ class Storage<Data>::iterator: public std::iterator<std::random_access_iterator_
         Data *operator->();
                    // we merely access the data so these can be default
         iterator &operator=(iterator const &other) = default;
+        iterator(iterator const &other) = default;
 };
 
 template <typename Data>

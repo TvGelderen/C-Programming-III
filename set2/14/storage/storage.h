@@ -2,7 +2,6 @@
 #define _INCLUDED_STORAGE_
 
 #include <vector>
-#include <iterator>
 
 template <typename Data>
 class Storage
@@ -20,22 +19,19 @@ class Storage
 };
 
 #include "push_back.h"          // push_back function
-
 #include "destructor.h"         // destructor
-
-              // contains the iterator implementation + declaration
-#include "../iterator/iterator.h"
+#include "iterator/iterator.h"  // contains the iterator impl + decl
 
 template <typename Data>
 inline Storage<Data>::iterator Storage<Data>::begin()
-{             // construct iterator pointing to begin of the internal vector
-    return iterator(d_storage.begin());
+{            
+    return iterator(d_storage.begin()); //iterator pointing to begin of vector
 }
 
 template <typename Data>
 inline Storage<Data>::iterator Storage<Data>::end()
-{             // construct iterator pointing to end of the internal vector
-    return iterator(d_storage.end());
+{            
+    return iterator(d_storage.end());   //iterator pointing to end of vector
 }
 
 #endif

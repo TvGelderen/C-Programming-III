@@ -8,8 +8,7 @@ using namespace std;
 
 int main()
 {
-    //example with strings
-    Storage<string> storage;
+    Storage<string> storage;                    //example with strings
     storage.push_back("Hoi");
     storage.push_back("String");
     storage.push_back("Abc");
@@ -19,8 +18,7 @@ int main()
     copy(storage.begin(), storage.end(), ostream_iterator<string>(cout, " "));
         cout << '\n';
 
-    //second example with ints :D
-    Storage<int> storage2;
+    Storage<int> storage2;                      //second example with ints
     storage2.push_back(5);
     storage2.push_back(32);
     storage2.push_back(18);
