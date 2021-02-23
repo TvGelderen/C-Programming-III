@@ -4,3 +4,4 @@ Aangepast:
 -headergaurds
 -iterator include naar iterator
 -kleine aanpassingen
+-operator assign als default toegevoegd
