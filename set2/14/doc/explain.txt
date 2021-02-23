@@ -1,1 +1,6 @@
 The implementation of the iterator class is based on the one found for the StringPtr class in the Annotations
+
+Aangepast:
+-headergaurds
+-iterator include naar iterator
+-kleine aanpassingen
