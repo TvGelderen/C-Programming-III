@@ -1,1 +1,1 @@
-We defined a struct Chars, this 
+We defined a struct Chars, the main template accepts two or more chars, a specialized template is used in the case of a single char. Both structs define insertion operators which insert the first char in the list, the insertion operator of the main template then inserts a new Chars object into the ostream with the rest of the list.
