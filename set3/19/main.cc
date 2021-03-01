@@ -26,7 +26,7 @@ struct Merge< Chars< lhs ... >, OneChar<rhs> >
 };
 
 template<char ...chars>
-ostream& operator<<(ostream& out, Chars<chars...> insert)
+ostream& operator<<(ostream& out, Chars<chars...> &&insert)
 {
     return (out << ... << chars);               //Simple insert in ostream for this exercise!
 }
