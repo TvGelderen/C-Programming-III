@@ -1,5 +1,5 @@
-#ifndef INCLUDED_CHARS_
-#define INCLUDED_CHARS_
+#ifndef INCLUDED_INSERTABLE_
+#define INCLUDED_INSERTABLE_
 
 #include <ostream>
 

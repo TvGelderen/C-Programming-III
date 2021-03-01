@@ -1,5 +1,5 @@
-#ifndef INCLUDED_CHARS_
-#define INCLUDED_CHARS_
+#ifndef INCLUDED_INSERTABLE_
+#define INCLUDED_INSERTABLE_
 
 template <template <typename> class Container, typename Type>
 struct Insertable: public Container<Type>
