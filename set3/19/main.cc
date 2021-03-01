@@ -16,13 +16,13 @@ struct Merge;                                   //'basis' template of Merge
 template <char ... lhs, char ... rhs >          //specialization Chars & Chars
 struct Merge< Chars< lhs ... >, Chars< rhs ... > >
 { 
-    typedef Chars< lhs ..., rhs ... > CP; 
+    typedef Chars< lhs ..., rhs ... > CP;       //define the type, merging lhs and rhs
 };
 
 template <char ... lhs, char rhs >             //specialization Chars & OneChar
 struct Merge< Chars< lhs ... >, OneChar<rhs> >
 { 
-    typedef Chars< lhs ..., rhs> CP; 
+    typedef Chars< lhs ..., rhs> CP;            
 };
 
 template<char ...chars>
@@ -35,10 +35,10 @@ int main()
 {
 
     cout << 
-        Merge<
+        Merge<                                 //indeed shows 123456
             Chars<'1', '2', '3'>, 
             Merge<Chars<'4', '5'>, OneChar<'6'>>::CP
-        >::CP{} << '\n';
+        >::CP{} << '\n';                        
     
 }
         
