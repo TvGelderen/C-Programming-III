@@ -1,0 +1,5 @@
+Explanation:
+We define the two classes Convert and Display. The Convert class acts as forwarder to the Display class which takes an additional parameter that specifies whether a base class was already instantiated. The general display class finds the current last digit, converts it to a character, and merges this char with an instantiation of itself with the remaining digits. We define two base classes that end the recursion when there are no more digits. 
+
+1. The first specialization is generated when no instance was previously instantiated (create char '0').
+2. The second specialization is generated when an instance was previously instantiated (create no char).
