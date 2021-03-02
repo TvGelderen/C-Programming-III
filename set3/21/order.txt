@@ -1,4 +1,3 @@
 doc/explain.txt
 
 main.cc
-chars/chars.h

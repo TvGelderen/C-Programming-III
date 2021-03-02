@@ -10,7 +10,7 @@ struct NrTrait
         value = nr,
         even = nr % 2 == 0,
         by3 = nr % 3 == 0,
-        width = 1 + NrTrait<nr / 10>::width         // compute width recursively!
+        width = 1 + NrTrait<nr / 10>::width  // compute width recursively
     };
 };
 
@@ -22,7 +22,7 @@ struct NrTrait<0>
         value = 0,
         even = 1,
         by3 = 1,
-        width = 0                                  //stopping specialization for recursion!
+        width = 0               // stopping specialization for recursion
     };
 };
 
