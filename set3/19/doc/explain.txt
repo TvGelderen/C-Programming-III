@@ -1,0 +1,1 @@
+Merge's CP creates a new Chars object using the variadic non-type templates of the two Chars objects or the one from the Chars object and the non-type parameter from the OneChar object. The resulting Chars object can be inserted into an ostream using the defined insertion operator.

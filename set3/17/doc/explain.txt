@@ -1,0 +1,1 @@
+NrTrait defines an enum in which all four enumerators (value, even, by3, and width) are available. A specialized template is created for the number 0 in order to stop the recursive calculation of the width.
