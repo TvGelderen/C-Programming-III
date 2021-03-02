@@ -6,7 +6,7 @@ template <size_t nr>
 struct NrTrait
 {
     enum
-    { 
+    {
         value = nr,
         even = nr % 2 == 0,
         by3 = nr % 3 == 0,
@@ -17,19 +17,19 @@ struct NrTrait
 template <>
 struct NrTrait<0>
 {
-    enum 
-    { 
+    enum
+    {
+        value = 0,
+        even = 1,
+        by3 = 1,
         width = 0                                  //stopping specialization for recursion!
-    };             
+    };
 };
 
 int main()
 {
-    cout << "value: " << NrTrait<1971962>::value << '\n' << 
-            "even: " << NrTrait<1971962>::even << '\n' << 
-            "by3: " << NrTrait<1971962>::by3 << '\n'<< 
+    cout << "value: " << NrTrait<1971962>::value << '\n' <<
+            "even: " << NrTrait<1971962>::even << '\n' <<
+            "by3: " << NrTrait<1971962>::by3 << '\n'<<
             "width: " << NrTrait<1971962>::width << '\n';
 }
-
-
-

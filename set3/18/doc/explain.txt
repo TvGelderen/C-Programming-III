@@ -1,0 +1,1 @@
+The binary value is calculated recursively by checking the value of the last bit (using bitwise AND) which is appended to the binary value of the current value with its bits shifted to the right (e.g. 0 and 101 -> 1010).
