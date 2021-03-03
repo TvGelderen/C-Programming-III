@@ -1,0 +1,24 @@
+What's the result of the expression v1 + v2 + v3 + v4?
+
+    An object of the expression template whose index operator will call the operations on the vectors (in this case only additions) in the appropriate (mathematical) order.
+
+How many index computations will be performed?
+
+    In the graph the numbers represent index computations:
+
+        v1      v2      v3      v4
+        |       |       |       |
+        +---+---+       |       |
+        1   |           |       |
+           tmp          |       |
+            |           |       |
+            +-----+-----+       |
+            2     |             |
+                 tmp            |
+                  |             |
+                  +------+------+
+                  3      |      4
+                        tmp
+                         5
+
+    Since the vectors are of size N, there are 5 * N index computations.
