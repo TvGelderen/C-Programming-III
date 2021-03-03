@@ -1,0 +1,1 @@
+The Expr class and nested class Trait are based on the examples given in the slides.
