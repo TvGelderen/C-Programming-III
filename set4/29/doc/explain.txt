@@ -1,0 +1,2 @@
+We define our own Plus struct which is a class template of Type. Its operator function call can be used to add two values of Type and returns the result.
+An empty example of the class template Expr is given.
