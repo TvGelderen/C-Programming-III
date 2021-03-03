@@ -4,43 +4,55 @@
 template <typename Type>
 class Traits
 {
-    template<typename Trait>
-    struct TypeTraits
-    {
-        enum {
-            value = 1
-        };
-    };
-
-    template<typename Trait>
-    struct TypeTraits<Trait*>
-    {
-        enum {
-            value = 2
-        };
-    };
-
-    template<typename Trait>
-    struct TypeTraits<Trait&>
-    {
-        enum {
-            value = 3
-        };
-    };
-    
-    template<typename Trait>
-    struct TypeTraits<Trait&&>
-    {
-        enum {
-            value = 4
-        };
-    };
+    template <typename Trait>
+    struct TypeTraits;
 
     public:
-        enum {
+        enum
+        {
             value = TypeTraits<Type>::value
         };
 
+};
+
+template<typename Type>
+template <typename Trait>
+struct Traits<Type>::TypeTraits
+{
+    enum
+    {
+        value = 1
+    };
+};
+
+template<typename Type>
+template <typename Trait>
+struct Traits<Type>::TypeTraits<Trait *>
+{
+    enum
+    {
+        value = 2
+    };
+};
+
+template<typename Type>
+template <typename Trait>
+struct Traits<Type>::TypeTraits<Trait &>
+{
+    enum
+    {
+        value = 3
+    };
+};
+
+template<typename Type>
+template <typename Trait>
+struct Traits<Type>::TypeTraits<Trait &&>
+{
+    enum
+    {
+        value = 4
+    };
 };
 
 #endif

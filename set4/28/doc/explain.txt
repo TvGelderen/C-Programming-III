@@ -1,3 +1,0 @@
-./doc/explain.txt
-./file.h
-./main.cc
