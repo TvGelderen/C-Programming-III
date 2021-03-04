@@ -15,7 +15,7 @@ class Traits
 
 };
 
-template<typename Type>
+template <typename Type>
 template <typename Trait>
 struct Traits<Type>::TypeTraits
 {
@@ -25,7 +25,7 @@ struct Traits<Type>::TypeTraits
     };
 };
 
-template<typename Type>
+template <typename Type>
 template <typename Trait>
 struct Traits<Type>::TypeTraits<Trait *>
 {
@@ -35,7 +35,7 @@ struct Traits<Type>::TypeTraits<Trait *>
     };
 };
 
-template<typename Type>
+template <typename Type>
 template <typename Trait>
 struct Traits<Type>::TypeTraits<Trait &>
 {
@@ -45,7 +45,7 @@ struct Traits<Type>::TypeTraits<Trait &>
     };
 };
 
-template<typename Type>
+template <typename Type>
 template <typename Trait>
 struct Traits<Type>::TypeTraits<Trait &&>
 {

@@ -1,0 +1,2 @@
+Explanations:
+We defined a general traits class that takes a single template argument. The trait class encapsulates the TypeTraits class which works as the 'workhorse' struct. It has a base version that specifies the value=1 for the general template case. It has three partially specialized versions that define the values 2, 3, 4 for pointers, references, and r-value references.
