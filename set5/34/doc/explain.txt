@@ -1,0 +1,2 @@
+We use a template template parameter for the container class and a regular template parameter for the type of data it contains, using a compound requirement with std::same_as we check whether its index operator returns a reference of that data type.
+The use of the concept is shown in the definition of fun.
