@@ -1,0 +1,5 @@
+We define two concepts:
+    Add, which requires the addition and subtraction operators to be present
+    Mul, which requires the multiplication and division operators to be present
+
+These concepts are then used by AddMul and AddOrMul so they function as required.
