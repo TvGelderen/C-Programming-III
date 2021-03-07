@@ -1,0 +1,1 @@
+We defined a specialization for math without the variadic template parameters for the final case. The functions create an object of the struct doing the computation and call its operation member with the second two template parameters. After this the main math function calls math without the third template parameter, eventually ending up at the specialization of math.

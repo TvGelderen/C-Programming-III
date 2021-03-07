@@ -3,13 +3,16 @@
 
 #include "iostream"
 
-template<typename LType, typename RType>
+template<typename Lhs, typename Rhs>
 struct Sub
 {
-    static void operation(LType &lhs, RType &rhs)
-    {
-        std::cout << lhs - rhs << ' ';
-    };   
+    static void operation(Lhs &lhs, Rhs &rhs);
+};
+
+template<typename Lhs, typename Rhs>
+void Sub<Lhs, Rhs>::operation(Lhs &lhs, Rhs &rhs)
+{
+    std::cout << lhs - rhs << ' ';
 };
 
 #endif
