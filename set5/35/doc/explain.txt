@@ -1,0 +1,1 @@
+Two ways of enforcing the concept can be seen in the two functions fun1 and fun2.
