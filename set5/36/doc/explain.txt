@@ -1,0 +1,1 @@
+Using std::totally_ordered we check whether the comparison operators are available for that type.
