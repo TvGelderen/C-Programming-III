@@ -1,0 +1,1 @@
+The concept works when using ints, when using a string as a parameter we get an error stating that the constraints are not satisfied and that each of the operations would be ill-formed.
