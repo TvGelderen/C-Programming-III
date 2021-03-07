@@ -4,16 +4,15 @@
 
 using namespace std;
 
-template <typename Type, template<typename> class Container>
+template <typename Container>
 concept ReturnsRef =
-    requires(Container<Type> container)
+    requires(Container container)
     {
-        { container[0] } -> same_as<Type &>;
+        { container[0] } -> same_as<typename Container::value_type &>;
     };
 
-template <typename Type, template<typename> class Container>
-    requires ReturnsRef<Type, Container>
-Type &fun(Container<Type> &container)
+template <ReturnsRef Container>
+auto fun(Container &container)
 {
     return container[0];
 }
