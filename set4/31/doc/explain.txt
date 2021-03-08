@@ -9,16 +9,18 @@ How many index computations will be performed?
         v1      v2      v3      v4
         |       |       |       |
         +---+---+       |       |
-        1   |           |       |
+        1   |   2       |       |
            tmp          |       |
             |           |       |
             +-----+-----+       |
-            2     |             |
+                  |     3       |
                  tmp            |
                   |             |
                   +------+------+
-                  3      |      4
+                         |      4
                         tmp
+                         |
                          5
+
 
     Since the vectors are of size N, there are 5 * N index computations.
