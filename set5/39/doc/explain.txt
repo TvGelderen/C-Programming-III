@@ -1,0 +1,3 @@
+We set the following requirements for the RndIterator based on the random_access_iterator properties.
+
+Using std::regular we require the iterator to be able to be copied, moved, swapped, and default constructed. With std::totally_ordered we require comparison operators to be available. Furthermore it should be incrementable and decrementable as well as support basic arithmetic operators. Finnaly one should be able to dereference it, either with operator* or operator[].
