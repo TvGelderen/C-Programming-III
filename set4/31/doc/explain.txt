@@ -22,5 +22,4 @@ How many index computations will be performed?
                          |
                          5
 
-
-    Since the vectors are of size N, there are 5 * N index computations.
+    This is done for all N elements of the vector, so there are 5 * N index computations.
