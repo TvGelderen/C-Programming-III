@@ -5,34 +5,33 @@
 using namespace std;
 
 template<typename Type>
-void checkType(Type p)
+int const * makeConstPtr(Type val)
 {
-    cout << Traits<Type>::value << '\n';
-}
-
-template<typename Type>
-Type * const makeConstPtr(Type val)
-{
-    return new Type{ val };
+            // pointer case
+    if constexpr(Traits<Type>::value == 2)
+        return new int( *val );
+            // r-value reference case
+    else if constexpr(Traits<Type>::value == 4)
+        return new int( std::move(val) );
+            // plain type, reference case
+    else
+        return new int ( val );
 }
 
 int main()
 {
-    cout << Traits<int>::value << '\n'
-         << Traits<int*>::value << '\n'
-         << Traits<int&>::value << '\n'
-         << Traits<int&&>::value << '\n';
 
     int basic = 5;
-    int &ref = basic;
     int *pointer = &basic;
+    int &ref = basic;
     int &&rref = std::move(basic);
 
-    checkType(basic);
-    checkType(ref);
-    checkType(pointer);
-    checkType(std::move(rref));
+    cout << "Plain " << Traits<decltype(basic)>::value << '\n'
+         << "Pointer " << Traits<decltype(pointer)>::value << '\n'
+         << "Reference " << Traits<decltype(ref)>::value << '\n'
+         << "R Reference " << Traits<decltype(rref)>::value << '\n';
 
-    auto ptr = makeConstPtr(42);
+    auto ptr = makeConstPtr(basic);
     cout << "ptr value: " << *ptr << '\n';
+    delete ptr;
 }
