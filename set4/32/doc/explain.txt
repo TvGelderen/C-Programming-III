@@ -1,0 +1,5 @@
+Using tuple_cat we can add two tuples together, creating a new tuple. In the added lines we add a tuple with an std::string field also, this works as shown in the output:
+
+    4
+    3
+    5
