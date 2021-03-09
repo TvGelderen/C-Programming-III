@@ -62,7 +62,7 @@ inline Insertable<Container, Types ...>::Insertable(Container<Types ...> &&data)
 template <template <typename ...> class Container, typename ...Types>
 inline Insertable<Container, Types ...>::Insertable(Types const &...values)
 :
-    Insertable(std::forward<Types>(values)...)
+    Container<Types ...>(1, std::forward<Types>(values)...)
 {}
 
 template <template <typename ...> class Container, typename ...Types>
