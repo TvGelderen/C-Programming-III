@@ -20,7 +20,6 @@ int const * makeConstPtr(Type val)
 
 int main()
 {
-
     int basic = 5;
     int *pointer = &basic;
     int &ref = basic;
