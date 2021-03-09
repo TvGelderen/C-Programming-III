@@ -36,7 +36,7 @@ template <template <typename ...> class Container, typename ...Types>
 inline Insertable<Container, Types ...>::Insertable(
                                 Insertable<Container, Types ...> &&tmp)
 :
-    Insertable(std::move(tmp))
+    Container<Types ...>(std::move(tmp))
 {}
 
                                         // all other possible constructors
@@ -44,7 +44,7 @@ template <template <typename ...> class Container, typename ...Types>
 template <typename ...Params>
 inline Insertable<Container, Types ...>::Insertable(Params ...params)
 :
-    Insertable(std::forward<Params>(params)...)
+    Container<Types ...>(std::forward<Params>(params)...)
 {}
 
 template <template <typename ...> class Container, typename ...Types>
@@ -56,7 +56,7 @@ inline Insertable<Container, Types ...>::Insertable(Container<Types ...> const &
 template <template <typename ...> class Container, typename ...Types>
 inline Insertable<Container, Types ...>::Insertable(Container<Types ...> &&data)
 :
-    Insertable(data)
+    Container<Types ...>(std::move(data))
 {}
 
 template <template <typename ...> class Container, typename ...Types>
