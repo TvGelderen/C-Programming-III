@@ -1,0 +1,8 @@
+%class-name Scanner
+
+%%
+
+[[:alpha:]_]+               return WORD;
+[\t\ ]+                     return SPACE;
+[\n]                        
+.
