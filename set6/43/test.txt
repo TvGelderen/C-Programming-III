@@ -1,0 +1,17 @@
+         This is a line /* containing
+        multi line
+    comment */ and this is more
+
+#this should be ignored
+hello /* comment */ world
+#
+
+
+
+
+
+Here some more text
+
+            This is not a comment: "hello /* no comment */ world"
+			tab
+this is text "hi"

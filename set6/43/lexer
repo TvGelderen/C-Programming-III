@@ -1,0 +1,40 @@
+%class-name Scanner
+
+%x string
+
+%x comment
+
+
+%%
+
+#.*\n                // ignore comments
+^[\t\ ]+             // ignore initial blanks 
+^[\n]                // ignore blank lines!
+[ \t\ ]+$            // ignore trailing blanks
+
+
+"/*"            {
+                    more();
+                    begin(StartCondition_::comment);
+                }
+<comment> "*/"  {
+                    begin(StartCondition_::INITIAL);
+                    return Token::COMMENT;
+                }
+<comment>.|\n    more();
+
+
+
+
+\"              {
+                    more();
+                    begin(StartCondition_::string);
+                }
+<string> \"    {
+                    begin(StartCondition_::INITIAL);
+                    return Token::STRING;
+                }
+<string>.    more();
+
+
+
