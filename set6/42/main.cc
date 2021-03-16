@@ -22,8 +22,10 @@ void processInputStream(istream &stream)
             cout << "Identifier: " << scanner.matched() << '\n';
         case INTEGRAL:
             cout << "Integral: " << scanner.matched() << '\n';
-        case OPERATOR:
-            cout << "Operator: " << scanner.matched() << '\n';
+        case DOUBLE:
+            cout << "Double: " << scanner.matched() << '\n';
+        default:
+            cout << "Value: " << scanner.matched() << '\n';
         }
     }
 }

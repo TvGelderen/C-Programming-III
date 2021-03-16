@@ -10,34 +10,45 @@ enum Tokens
 {
     IDENTIFIER,
     INTEGRAL,
-    OP_ADD          = '+',
-    OP_NEG          = '-',
-    OP_MUL          = '*',
-    OP_DIV          = '/',
-    OP_MOD          = '%',
-    OP_OR           = '|',
-    OP_BITNEG       = '~',
-    OP_AND          = '&',
-    OP_XOR          = '^',
-    OP_ASS          = '=',
-
-    OP_ASS_ADD      = 1000 + '+',
-    OP_ASS_NEG      = 1000 + '-',
-    OP_ASS_MUL      = 1000 + '*',
-    OP_ASS_DIV      = 1000 + '/',
-    OP_ASS_MOD      = 1000 + '%',
-    OP_ASS_OR       = 1000 + '|',
-    OP_ASS_BITNEG   = 1000 + '~',
-    OP_ASS_AND      = 1000 + '&',
-    OP_ASS_XOR      = 1000 + '^',
-
-
     DOUBLE,
-    OPERATOR,
     CHAR,
+
+    OP_ADD          = '+',          // +
+    OP_NEG          = '-',          // -
+    OP_MUL          = '*',          // *
+    OP_DIV          = '/',          // /
+    OP_MOD          = '%',          // %
+    OP_BITOR        = '|',          // |
+    OP_BITAND       = '&',          // &
+    OP_BITNEG       = '~',          // ~
+    OP_BITXOR       = '^',          // ^
+    OP_ASS          = '=',          // =
+    OP_SMALLER      = '<',          // <
+    OP_GREATER      = '>',          // >
+
+    OP_TERNARY      = '?',          // ?
+    OP_TERNARY_SEP  = ':',          // :
+
+    OP_LSHIFT       = 256 + '<',    // <<
+    OP_RSHIFT       = 256 + '>',    // >>
+    OP_OR           = 256 + '|',    // ||
+    OP_AND          = 256 + '&',    // &&
+
+    OP_ASS_ADD      = 512 + '+',    // +=
+    OP_ASS_NEG      = 512 + '-',    // -=
+    OP_ASS_MUL      = 512 + '*',    // *=
+    OP_ASS_DIV      = 512 + '/',    // /=
+    OP_ASS_MOD      = 512 + '%',    // %=
+    OP_ASS_BITOR    = 512 + '|',    // |=
+    OP_ASS_BITAND   = 512 + '&',    // &=
+    OP_ASS_BITNEG   = 512 + '~',    // ~=
+    OP_ASS_BITXOR   = 512 + '^',    // ^=
+    OP_ASS_ASS      = 512 + '=',    // ==
     
-    SPACE,
-    NEWLINE,
+    OP_ASS_LSHIFT   = 768 + '<',    // <<=
+    OP_ASS_RSHIFT   = 768 + '>',    // >>=
+    OP_ASS_OR       = 768 + '|',    // ||=
+    OP_ASS_AND      = 768 + '&',    // &&=
     EOL = 256
 };
 

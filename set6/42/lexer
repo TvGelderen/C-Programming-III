@@ -1,13 +1,17 @@
 %class-name Scanner
 
+singleCharOperator  [\+\-\*\/\%\|\&\~\^\=<>]
+doubleCharOperator  \<\<|\>\>|\&\&|\|\|
+
 %%
 
-[[:alpha:]_][[:alpha:][:digit:]_]*      return IDENTIFIER;
-[-][[:digit:]]                          return INTEGRAL;
-[\+\-\*\/\%\|\&\~\^\=\<\>]              return matched()[0];
-[\+\-\*\/\%\|\&\~\^\=\<\>]=             return 1000 + matched()[0];
-\&\&                                    return OPERATOR_LAND;
-\|\|                                    return OPERATOR_LOR;
-[\t\ ]+                                 return SPACE;
-[\n]                                    return NEWLINE;
-.
+[[:alpha:]_][[:alnum:]_]*       return IDENTIFIER;
+[[:digit:]]+["."][[:digit:]]+   return DOUBLE;
+[-][[:digit:]]                  return INTEGRAL;
+
+{singleCharOperator}            return 0 + matched()[0];
+{doubleCharOperator}            return 256 + matched()[0];
+{singleCharOperator}=           return 512 + matched()[0];
+{doubleCharOperator}=           return 768 + matched()[0];
+
+.                               return matched()[0];
