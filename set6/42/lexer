@@ -1,0 +1,13 @@
+%class-name Scanner
+
+%%
+
+[[:alpha:]_][[:alpha:][:digit:]_]*      return IDENTIFIER;
+[-][[:digit:]]                          return INTEGRAL;
+[\+\-\*\/\%\|\&\~\^\=\<\>]              return matched()[0];
+[\+\-\*\/\%\|\&\~\^=]=                  return 1000 + matched()[0];
+\&\&                                    return OPERATOR_LAND;
+\|\|                                    return OPERATOR_LOR;
+[\t\ ]+                                 return SPACE;
+[\n]                                    return NEWLINE;
+.
