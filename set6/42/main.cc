@@ -16,15 +16,18 @@ void processInputStream(istream &stream)
 
     while (int token = scanner.lex()) 
     {                    
-        if (token == WORD)
-            words.push_back(scanner.matched());    // process other tokens
+        switch (token)
+        {
+        case IDENTIFIER:
+            cout << "Identifier: " << scanner.matched() << '\n';
+        case INTEGRAL:
+            cout << "Integral: " << scanner.matched() << '\n';
+        case DOUBLE:
+            cout << "Double: " << scanner.matched() << '\n';
+        default:
+            cout << "Value: " << scanner.matched() << '\n';
+        }
     }
-                        // sorts the list of words
-    sort(words.begin(), words.end());
-                        // removes the duplicates
-    words.erase(unique(words.begin(), words.end()), words.end());
-    copy(words.begin(), words.end(), ostream_iterator<string>(cout, " "));
-        cout << '\n';   // closing line!
 }
 
 int main(int argc, char **argv)
