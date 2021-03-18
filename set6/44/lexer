@@ -1,0 +1,28 @@
+%class-name Scanner
+
+%x string
+%x comment
+
+%%
+
+"//".*                  return -1;//ignore comments!
+
+
+\"                      {
+                            more();
+                            begin(StartCondition_::string);
+                        }
+<string> \"             {
+                            begin(StartCondition_::INITIAL);
+                            return ++d_counter;
+                        }
+<string>\\.|.           more();
+<string>\"[\n\t\ ]*\"   //handle concenated strings
+
+
+"/*"                    begin(StartCondition_::comment);
+<comment> "*/"          {
+                            begin(StartCondition_::INITIAL);
+                            return -1;
+                        }
+<comment> .|\n          more();
