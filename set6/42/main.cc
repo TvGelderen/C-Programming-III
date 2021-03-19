@@ -13,7 +13,7 @@ void processInputStream(istream &stream)
 {
     vector<string> words;
     Scanner scanner(stream);
-    scanner.setDebug(true);
+    scanner.setDebug(false);
 
     while (int token = scanner.lex()) 
     {
