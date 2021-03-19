@@ -8,7 +8,7 @@
 
 enum Tokens
 {
-    IDENTIFIER,
+    IDENTIFIER = 257,
     INTEGRAL,
     DOUBLE,
     CHAR,
