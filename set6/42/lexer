@@ -2,12 +2,20 @@
 
 singleCharOperator  [\+\-\*\/\%\|\&\~\^\=<>]
 doubleCharOperator  \<\<|\>\>|\&\&|\|\|
+intSuffix           [uU]?([lLzZ]|ll|LL)?
 
 %%
 
 [[:alpha:]_][[:alnum:]_]*       return IDENTIFIER;
 [[:digit:]]+["."][[:digit:]]+   return DOUBLE;
-[-][[:digit:]]                  return INTEGRAL;
+
+
+[-]?[1-9][[:digit:]]*{intSuffix}  return INTEGRAL; // pos/negative allowed
+0[0-7]*{intSuffix}              return INTEGRAL; // octal, allowing 000...
+(0x|0X)[0-9a-fA-F]+{intSuffix}  return INTEGRAL; // hexadecimal
+(0b|0B)[01]+{intSuffix}         return INTEGRAL; // binary
+
+
 
 {singleCharOperator}            return 0 + matched()[0];
 {doubleCharOperator}            return 256 + matched()[0];
