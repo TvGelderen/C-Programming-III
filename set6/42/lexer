@@ -1,5 +1,4 @@
 %class-name Scanner
-%debug
 
 singleCharOperator  [\+\-\*\/\%\|\&\~\^\=<>]
 doubleCharOperator  \<\<|\>\>|\&\&|\|\|

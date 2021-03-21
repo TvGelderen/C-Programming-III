@@ -1,0 +1,6 @@
+%class-name = "Scanner"
+
+%%
+
+house/(boat|hold)               |
+[[:^blank:]]+                   std::cout << matched() << '\n';
