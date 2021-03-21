@@ -8,47 +8,12 @@
 
 enum Tokens
 {
-    IDENTIFIER,
+    IDENTIFIER = 257,
     INTEGRAL,
     DOUBLE,
+    OPERATOR,
+    STRING,
     CHAR,
-
-    OP_ADD          = '+',          // +
-    OP_NEG          = '-',          // -
-    OP_MUL          = '*',          // *
-    OP_DIV          = '/',          // /
-    OP_MOD          = '%',          // %
-    OP_BITOR        = '|',          // |
-    OP_BITAND       = '&',          // &
-    OP_BITNEG       = '~',          // ~
-    OP_BITXOR       = '^',          // ^
-    OP_ASS          = '=',          // =
-    OP_SMALLER      = '<',          // <
-    OP_GREATER      = '>',          // >
-
-    OP_TERNARY      = '?',          // ?
-    OP_TERNARY_SEP  = ':',          // :
-
-    OP_LSHIFT       = 256 + '<',    // <<
-    OP_RSHIFT       = 256 + '>',    // >>
-    OP_OR           = 256 + '|',    // ||
-    OP_AND          = 256 + '&',    // &&
-
-    OP_ASS_ADD      = 512 + '+',    // +=
-    OP_ASS_NEG      = 512 + '-',    // -=
-    OP_ASS_MUL      = 512 + '*',    // *=
-    OP_ASS_DIV      = 512 + '/',    // /=
-    OP_ASS_MOD      = 512 + '%',    // %=
-    OP_ASS_BITOR    = 512 + '|',    // |=
-    OP_ASS_BITAND   = 512 + '&',    // &=
-    OP_ASS_BITNEG   = 512 + '~',    // ~=
-    OP_ASS_BITXOR   = 512 + '^',    // ^=
-    OP_ASS_ASS      = 512 + '=',    // ==
-    
-    OP_ASS_LSHIFT   = 768 + '<',    // <<=
-    OP_ASS_RSHIFT   = 768 + '>',    // >>=
-    OP_ASS_OR       = 768 + '|',    // ||=
-    OP_ASS_AND      = 768 + '&',    // &&=
     EOL = 256
 };
 

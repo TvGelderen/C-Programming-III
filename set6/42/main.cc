@@ -13,19 +13,33 @@ void processInputStream(istream &stream)
 {
     vector<string> words;
     Scanner scanner(stream);
+    scanner.setDebug(false);
 
     while (int token = scanner.lex()) 
-    {                    
+    {
         switch (token)
         {
         case IDENTIFIER:
             cout << "Identifier: " << scanner.matched() << '\n';
+            break;
         case INTEGRAL:
             cout << "Integral: " << scanner.matched() << '\n';
+            break;
         case DOUBLE:
             cout << "Double: " << scanner.matched() << '\n';
+            break;
+        case OPERATOR:
+            cout << "Operator: " << scanner.matched() << '\n';
+            break;
+        case STRING:
+            cout << "String: " << scanner.matched() << '\n';
+            break;
+        case CHAR:
+            cout << "Char: " << scanner.matched() << '\n';
+            break;
         default:
-            cout << "Value: " << scanner.matched() << '\n';
+            cout << "Default: " << scanner.matched() << '\n';
+            break;
         }
     }
 }
