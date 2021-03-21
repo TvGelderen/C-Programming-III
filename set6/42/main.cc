@@ -17,7 +17,6 @@ void processInputStream(istream &stream)
 
     while (int token = scanner.lex()) 
     {
-        cout << "new token is " << token << '\n';
         switch (token)
         {
         case IDENTIFIER:
@@ -29,8 +28,17 @@ void processInputStream(istream &stream)
         case DOUBLE:
             cout << "Double: " << scanner.matched() << '\n';
             break;
+        case OPERATOR:
+            cout << "Operator: " << scanner.matched() << '\n';
+            break;
+        case STRING:
+            cout << "String: " << scanner.matched() << '\n';
+            break;
+        case CHAR:
+            cout << "Char: " << scanner.matched() << '\n';
+            break;
         default:
-            cout << "Value: " << scanner.matched() << '\n';
+            cout << "Default: " << scanner.matched() << '\n';
             break;
         }
     }

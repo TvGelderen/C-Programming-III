@@ -1,0 +1,8 @@
+int main()
+a += 0b01u
+b && 3.14
+"A string, por favor"
+'c' 'h' 'a' 'r' 's'
+"a
+multiline
+string?"

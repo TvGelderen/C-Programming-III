@@ -6,21 +6,24 @@ doubleCharOperator  \<\<|\>\>|\&\&|\|\|
 intSuffix           [uU]?([lLzZ]|ll|LL)?
 
 %%
-
+[ \t\n]                         // ignore whitespace
 [[:alpha:]_][[:alnum:]_]*       return IDENTIFIER;
 [[:digit:]]+["."][[:digit:]]+   return DOUBLE;
 
 
-[-]?[1-9][[:digit:]]*{intSuffix}  return INTEGRAL; // pos/negative allowed
+-?[1-9][[:digit:]]*{intSuffix}  return INTEGRAL; // pos/negative allowed
 0[0-7]*{intSuffix}              return INTEGRAL; // octal, allowing 000...
 (0x|0X)[0-9a-fA-F]+{intSuffix}  return INTEGRAL; // hexadecimal
 (0b|0B)[01]+{intSuffix}         return INTEGRAL; // binary
 
 
 
-{singleCharOperator}            return 0 + matched()[0];
-{doubleCharOperator}            return 256 + matched()[0];
-{singleCharOperator}=           return 512 + matched()[0];
-{doubleCharOperator}=           return 768 + matched()[0];
+{singleCharOperator}            return OPERATOR;
+{doubleCharOperator}            return OPERATOR;
+{singleCharOperator}=           return OPERATOR;
+(\>\>|\<\<)=                    return OPERATOR;
+
+\"[^"]*\"                       return STRING;  // c++ strings
+\'[^']\'                        return CHAR;    // char constant
 
 .                               return matched()[0];
