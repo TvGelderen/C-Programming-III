@@ -12,8 +12,7 @@ int main()
     {
         if (token == COMMENT)
             continue;
-        //cout << '!' << token << scanner.matched() << '!' <<'\n';
-        cout << scanner.matched() <<'\n';               
+        cout << scanner.matched();           
     }
-
+    cout << '\n';               //close the line!
 }

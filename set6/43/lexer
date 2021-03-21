@@ -7,23 +7,18 @@
 
 %%
 
-#.*\n                // ignore comments
+^#.*\n               // ignore #comments ,only beginning of line!
 ^[\t\ ]+             // ignore initial blanks 
-^[\n]                // ignore blank lines!
 [ \t\ ]+$            // ignore trailing blanks
 
-
 "/*"            {
-                    more();
                     begin(StartCondition_::comment);
                 }
-<comment> "*/"  {
+<comment> "*/"[\ ]?  {     // remove spaces after comment between text! 
                     begin(StartCondition_::INITIAL);
                     return Token::COMMENT;
                 }
-<comment>.|\n    more();
-
-
+<comment> .|\n     more();
 
 
 \"              {
@@ -34,7 +29,6 @@
                     begin(StartCondition_::INITIAL);
                     return Token::STRING;
                 }
-<string>.    more();
-
+<string>\\.|.    more();
 
 

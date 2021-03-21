@@ -10,6 +10,8 @@
 // $insert classHead
 class Scanner: public ScannerBase
 {
+    bool d_mcomment = 0;          //variable indicating presence of multicomment
+
     public:
         explicit Scanner(std::istream &in = std::cin,
                                 std::ostream &out = std::cout);

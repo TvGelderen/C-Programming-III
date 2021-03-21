@@ -3,8 +3,7 @@
 
 enum Token
 {
-    EOL = 256,
-    STRING,
+    STRING = 256,
     COMMENT
 };
 
