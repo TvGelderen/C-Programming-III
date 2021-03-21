@@ -5,9 +5,11 @@ singleCharOperator  [\+\-\*\/\%\|\&\~\^\=<>]
 doubleCharOperator  \<\<|\>\>|\&\&|\|\|
 intSuffix           [uU]?([lLzZ]|ll|LL)?
 encodingPrefix      ([uUL]|u8)
+
 simpleEscapeSeq     \\[\'\"?\\abfnrtv]
 numericEscapeSeq    \\(x[0-9a-fA-F]{2}|[0-7]{3})
 universalCharNam    \\(u[[:digit:]]{4}|U[[:digit:]]{8})
+EscapeSeq           {simpleEscapeSeq}|{numericEscapeSeq}|{universalCharNam}
 
 %%
 [ \t\n]                         // ignore whitespace
@@ -15,19 +17,18 @@ universalCharNam    \\(u[[:digit:]]{4}|U[[:digit:]]{8})
 [[:digit:]]+["."][[:digit:]]+   return DOUBLE;
 
 
--?[1-9][[:digit:]]*{intSuffix}  return INTEGRAL; // pos/negative allowed
-0[0-7]*{intSuffix}              return INTEGRAL; // octal, allowing 000...
-(0x|0X)[0-9a-fA-F]+{intSuffix}  return INTEGRAL; // hexadecimal
-(0b|0B)[01]+{intSuffix}         return INTEGRAL; // binary
+-?[1-9][[:digit:]]*{intSuffix}  | /* pos/negative allowed */
+0[0-7]*{intSuffix}              | /* octal, allowing 000... */
+(0x|0X)[0-9a-fA-F]+{intSuffix}  | /* hexadecimal */
+(0b|0B)[01]+{intSuffix}         return INTEGRAL; /* binary */
 
 
-
-{singleCharOperator}            return OPERATOR;
-{doubleCharOperator}            return OPERATOR;
-{singleCharOperator}=           return OPERATOR;
+{singleCharOperator}            |
+{doubleCharOperator}            |
+{singleCharOperator}=           |
 (\>\>|\<\<)=                    return OPERATOR;
 
-{encodingPrefix}?\"[^"]*\"      return STRING;  // c++ strings
-{encodingPrefix}?\'([^'\\]|{simpleEscapeSeq}|{numericEscapeSeq}|{universalCharNam})\'        return CHAR;    // possibly prefixed
+{encodingPrefix}?\"[^"]*\"                      return STRING;
+{encodingPrefix}?\'([^'\\]|{EscapeSeq})\'       return CHAR;
 
 .                               return matched()[0];
