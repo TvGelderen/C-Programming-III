@@ -38,7 +38,7 @@ void processInputStream(istream &stream)
             cout << "Char: " << scanner.matched() << '\n';
             break;
         default:
-            cout << "Default: " << scanner.matched() << '\n';
+            // cout << "Default: " << scanner.matched() << '\n';
             break;
         }
     }

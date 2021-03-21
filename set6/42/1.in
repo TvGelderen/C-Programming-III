@@ -1,8 +1,8 @@
 int main()
 a += 0b01u
 b && 3.14
-"A string, por favor"
-'c' 'h' 'a' 'r' 's'
+u8"A string, por favor"
+u'c' U'h' L'a' 'r' 's' '\n' '\a'
 "a
 multiline
 string?"
