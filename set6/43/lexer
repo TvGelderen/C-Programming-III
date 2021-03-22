@@ -8,8 +8,8 @@
 %%
 
 ^#.*\n               // ignore #comments ,only beginning of line!
-^[\t\ ]+             // ignore initial blanks 
-[ \t\ ]+$            // ignore trailing blanks
+^[[:blank:]]+             // ignore initial blanks 
+[[:blank:]]+$            // ignore trailing blanks
 
 "/*"            {
                     begin(StartCondition_::comment);
