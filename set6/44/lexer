@@ -20,7 +20,10 @@
 <string>\"[\n\t\ ]*\"   //handle concenated strings
 
 
-"/*"                    begin(StartCondition_::comment);
+"/*"                    {
+                            begin(StartCondition_::comment);
+                            more();
+                        }
 <comment> "*/"          {
                             begin(StartCondition_::INITIAL);
                             return -1;
