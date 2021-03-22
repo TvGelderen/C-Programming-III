@@ -1,8 +1,21 @@
 int main()
 a += 0b01u
 b && 3.14
-u8"A string, por favor"
+u8"A string"", por favor"
+"Make it" "two, please"
 u'c' U'h' L'a' 'r' 's' '\n' '\a'
-"a
-multiline
-string?"
+
+42 052 0x2a 0X2A 0b101010
+
+58. 4e2 123.456e-67 .1E4f 0x10.1p0
+
+
+= += -= *= /= %= &= |= ^= <<= >>=
+
+++--
+
++ - + - * / % ~ & | ^ << >>
+
+! && ||
+
+== != < > <= >= <=>
