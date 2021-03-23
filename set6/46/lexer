@@ -3,4 +3,4 @@
 %%
 
 house/(boat|hold)               |
-[[:^blank:]]+                   std::cout << "Word: " << matched() << '\n';
+[[:^blank:]]+                   out() << "Word: " << matched() << '\n';
