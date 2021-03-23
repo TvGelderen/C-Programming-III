@@ -1,0 +1,5 @@
+./doc/summary.txt
+./doc/explain.txt
+
+./main.cc
+./lexer

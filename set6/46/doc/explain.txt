@@ -1,0 +1,3 @@
+The flex scanner performs greedy matches. Programs like Perl also offer facilities to perform minimal matches. Why is a minimal match feature not required for flex? 
+
+    Because flex has a stronger solution for this, the miniscanners.
