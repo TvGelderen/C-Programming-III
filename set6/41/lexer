@@ -2,7 +2,5 @@
 
 %%
 
-[[:alpha:]_]+               return WORD;
-[\t\ ]+                     return SPACE;
-[\n]                        
-.
+[[:alpha:]]+                return WORD;
+(.|\n)                      // ignore
