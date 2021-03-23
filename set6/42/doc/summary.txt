@@ -1,1 +1,1 @@
-42: tPurpose of this exercise: design a small tokenizer
+42: Purpose of this exercise: design a small tokenizer

@@ -1,0 +1,2 @@
+We used the definitions of floating point literals, integer literals, operators, string literals, and character literals found on cppreference.com. 
+The istreams are used in a similar way to the previous exercise.

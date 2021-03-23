@@ -1,1 +1,2 @@
-Explanation:
+Using the predefined alpha set we check for words.
+We defined a function processInputStream which takes in std::cin if no arguments are provided or fstreams for the file names that might be provided. This creates a scanner and uses it to push all matched words to a vector which is finally sorted using std::sort and output to std::cout.

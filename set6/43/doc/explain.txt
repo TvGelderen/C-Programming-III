@@ -1,0 +1,1 @@
+Using a mini-scanner which starts when encountering /* we filter out the multi line comments. Along with the comments, the initial and tailing blanks are also removed.

@@ -1,6 +1,5 @@
-./doc/summary.txt
 ./doc/explain.txt
 
+./main.cc
 ./Scanner.h
 ./lexer
-./main.cc

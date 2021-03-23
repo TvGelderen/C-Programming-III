@@ -13,31 +13,31 @@ void processInputStream(istream &stream)
 {
     Scanner scanner(stream);
 
-    while (int token = scanner.lex()) 
+    while (int token = scanner.lex())
     {
         switch (token)
         {
         case IDENTIFIER:
             cout << "Identifier: " << scanner.matched() << '\n';
-            break;
+        break;
         case INTEGRAL:
             cout << "Integral: " << scanner.matched() << '\n';
-            break;
+        break;
         case DOUBLE:
             cout << "Double: " << scanner.matched() << '\n';
-            break;
+        break;
         case OPERATOR:
             cout << "Operator: " << scanner.matched() << '\n';
-            break;
+        break;
         case STRING:
             cout << "String: " << scanner.matched() << '\n';
-            break;
+        break;
         case CHAR:
             cout << "Char: " << scanner.matched() << '\n';
-            break;
+        break;
         default:
             cout << "Default: " << scanner.matched() << '\n';
-            break;
+        break;
         }
     }
 }
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
                         // process the input stream
     if (argc == 1)
         processInputStream(std::cin);
-    
+
                         // process all files
     for (size_t i = 1; argv[i]; ++i)
     {
