@@ -11,7 +11,6 @@ using namespace std;
 
 void processInputStream(istream &stream)
 {
-    vector<string> words;
     Scanner scanner(stream);
 
     while (int token = scanner.lex()) 

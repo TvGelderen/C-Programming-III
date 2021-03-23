@@ -33,10 +33,10 @@ cCharSequence       {cChar}{2,}
 
     /* Integer literals, according to
     https://en.cppreference.com/w/cpp/language/integer_literal */
-[1-9][[:digit:]]*{intSuffix}? | /* pos/negative allowed */
-0[0-7]*{intSuffix}?             | /* octal, allowing 000... */
-(0x|0X)[[:xdigit:]]+{intSuffix}?  | /* hexadecimal */
-(0b|0B)[01]+{intSuffix}?        return INTEGRAL; /* binary */
+[1-9][[:digit:]]*{intSuffix}?               | /* pos/negative allowed */
+0[0-7]*{intSuffix}?                         | /* octal, allowing 000... */
+(0x|0X)[[:xdigit:]]+{intSuffix}?            | /* hexadecimal */
+(0b|0B)[01]+{intSuffix}?                    return INTEGRAL; /* binary */
 
     /* Operators from the following columns:
         - Assignment
