@@ -28,6 +28,7 @@ void processInputStream(istream &stream)
 }
 
 int main(int argc, char **argv)
+try
 {
                         // process the input stream
     if (argc == 1)
@@ -40,4 +41,9 @@ int main(int argc, char **argv)
         processInputStream(stream);
         stream.close();
     }
+}
+catch (exception const &exc)
+{
+    cerr << exc.what() << '\n';
+    return 1;
 }

@@ -4,6 +4,7 @@
 using namespace std; 
 
 int main()
+try
 {
     Scanner scanner;
     scanner.switchIstream("test.txt");
@@ -15,4 +16,9 @@ int main()
         cout << scanner.matched();           
     }
     cout << '\n';               //close the line!
+}
+catch (exception const &exc)
+{
+    cerr << exc.what() << '\n';
+    return 1;
 }

@@ -6,6 +6,7 @@
 using namespace std; 
 
 int main(int argc, char **argv)
+try
 {
     ifstream in(argv[1]);
     Scanner scanner(in);
@@ -19,4 +20,9 @@ int main(int argc, char **argv)
     }
 
     cout << '\n';               //close the line!
+}
+catch (exception const &exc)
+{
+    cerr << exc.what() << '\n';
+    return 1;
 }
