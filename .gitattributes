@@ -1,3 +1,8 @@
+# flexc++ generated
 Scannerbase.h linguist-generated=true
 lex.cc linguist-generated=true
+
+# bisonc++ generated
+Parserbase.h linguist-generated=true
+parse.cc linguist-generated=true
 

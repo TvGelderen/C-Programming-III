@@ -1,0 +1,37 @@
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/scanner.h
+
+%debug
+
+%token WRITE IDENT NUMBER
+
+%%
+
+startSymbol:                            // accept 0 or more writes
+    startSymbol write
+|
+    // empty
+;
+
+write:                                  // writen token with arglist
+    WRITE enclosedArgList
+;
+
+enclosedArgList:
+    '(' arglist ')'
+;
+
+arglist:                                // comma-seperated list(1+) of args
+    arglist ',' arg
+|
+    arg
+;
+
+arg:
+    IDENT
+|
+    NUMBER
+;
+

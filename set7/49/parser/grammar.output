@@ -1,0 +1,106 @@
+[grammar (info)] Line 38: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: startSymbol ->  startSymbol write
+2: startSymbol ->  <empty>
+3: write (WRITE) ->  WRITE enclosedArgList
+4: enclosedArgList ('(') ->  '(' arglist ')'
+5: arglist (',') ->  arglist ',' arg
+6: arglist ->  arg
+7: arg (IDENT) ->  IDENT
+8: arg (NUMBER) ->  NUMBER
+9: startSymbol_$ ->  startSymbol
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: WRITE
+   258: IDENT
+   259: NUMBER
+    40: '('
+    41: ')'
+    44: ','
+
+
+Grammar States: 
+
+State 0:
+9: startSymbol_$ ->  . startSymbol 
+  0:   On startSymbol to state 1
+  Reduce by 2: startSymbol ->  . 
+
+
+State 1:
+9: startSymbol_$ -> startSymbol  . 
+1: startSymbol -> startSymbol  . write 
+  0:   On write to state 2
+  1:   On WRITE to state 3
+
+
+State 2:
+1: startSymbol -> startSymbol write  . 
+  Reduce by 1: startSymbol -> startSymbol write  . 
+
+
+State 3:
+3: write -> WRITE  . enclosedArgList 
+  0:   On enclosedArgList to state 4
+  1:   On '(' to state 5
+
+
+State 4:
+3: write -> WRITE enclosedArgList  . 
+  Reduce by 3: write -> WRITE enclosedArgList  . 
+
+
+State 5:
+4: enclosedArgList -> '('  . arglist ')' 
+  0:   On arglist to state 6
+  1:   On arg to state 7
+  2:   On IDENT to state 8
+  3:   On NUMBER to state 9
+
+
+State 6:
+4: enclosedArgList -> '(' arglist  . ')' 
+5: arglist -> arglist  . ',' arg 
+  0:   On ')' to state 10
+  1:   On ',' to state 11
+
+
+State 7:
+6: arglist -> arg  . 
+  Reduce by 6: arglist -> arg  . 
+
+
+State 8:
+7: arg -> IDENT  . 
+  Reduce by 7: arg -> IDENT  . 
+
+
+State 9:
+8: arg -> NUMBER  . 
+  Reduce by 8: arg -> NUMBER  . 
+
+
+State 10:
+4: enclosedArgList -> '(' arglist ')'  . 
+  Reduce by 4: enclosedArgList -> '(' arglist ')'  . 
+
+
+State 11:
+5: arglist -> arglist ','  . arg 
+  0:   On arg to state 12
+  1:   On IDENT to state 8
+  2:   On NUMBER to state 9
+
+
+State 12:
+5: arglist -> arglist ',' arg  . 
+  Reduce by 5: arglist -> arglist ',' arg  . 
+
+
+

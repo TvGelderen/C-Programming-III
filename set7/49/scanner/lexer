@@ -1,0 +1,9 @@
+%class-name = "Scanner"
+
+%%
+[[:blank:]]                     // ignore
+write                           return Parser::WRITE;
+[[:alpha:]_][[:alnum:]_]*       return Parser::IDENT;
+[[:digit:]]+                    return Parser::NUMBER;
+
+[(,)]                           return matched()[0];
