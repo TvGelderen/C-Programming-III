@@ -1,58 +1,76 @@
+%baseclass-preinclude   cmath
 %class-name Parser
 %filenames parser
 %parsefun-source parse.cc
 %scanner ../scanner/scanner.h
 
+%stype  double
 %token  NUMBER
 
-%left   '+' '-'
-%right  uMinus
+%left '-' '+'
+%left '*' '/'
+%left NEG     // negation--unary minus 
+%left SQUARE  // square root
+
+
 
 //%debug
 
 %%
 
-lines:
-    lines line
-|
-    line
+input:    
+        // empty 
+| 
+        input line
 ;
 
-
-line:
-    expr '\n'
-    {
-        std::cout << $1 << '\n';
-    }   
-|
-    '\n'
+line:   
+        '\n'
+| 
+        expr '\n'  
+        { 
+            std::cout << "Result:" << $1 << '\n';
+        }
 ;
-
 
 expr:
     NUMBER
     {
-        $$ = $1;
+        $$ = std::stod(d_scanner.matched());
     }
 |
-    '-' expr            %prec uMinus
-    {
-        $$ = -$2;
-    }
-|
-    expr '+' expr
+    expr '+' expr                // addition
     {
         $$ = $1 + $3;
-    }    
+    }
 |
-    expr '-' expr
+    expr '-' expr               // subtract
     {
         $$ = $1 - $3;
-
-    }    
+    }  
 |
-    '(' expr ')'
+    expr '*' expr               // multiply
     {
-        $$ = $2;
+        $$ = $1 * $3;
+    }    
+| 
+    expr '/' expr                // divide
+    { 
+        $$ = $1 / $3;
     }
+| 
+    '-' expr %prec NEG           // negation
+    { 
+        $$ = -$2;
+    }
+| 
+    '$' expr %prec SQUARE        // sqrt
+    { 
+        $$ = sqrt($2);
+    }
+|
+    '(' expr ')'                // parantheses
+    { 
+        $$ = $2;           
+    }  
 ;

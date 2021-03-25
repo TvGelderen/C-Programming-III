@@ -7,10 +7,10 @@ exp         [eE][-+]?{digits}
 
 %%
 
-[ \t]+                                  //remove whitespaces
+[\ \t]+                                  //remove whitespaces
 
 {digits}                                |
 {digits}"."{optdigits}{exp}?            |
 {optdigits}"."{digits}{exp}?            return Parser::NUMBER;
 
-\n                                      return matched()[0];
+.|\n                                    return matched()[0];
