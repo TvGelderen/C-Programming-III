@@ -1,0 +1,7 @@
+%filenames scanner
+%interactive
+
+%%
+[\ ]
+[[:alpha:]]+                                return Parser::WORD;
+.                                           return matched()[0];

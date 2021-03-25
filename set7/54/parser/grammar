@@ -1,0 +1,33 @@
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/scanner.h
+
+%token WORD 
+%left ','
+
+%debug 
+
+%%
+
+list:
+    WORD plain
+|
+    WORD ',' separated
+|   
+    WORD
+|
+    //empty
+;
+
+plain:
+    plain WORD
+|
+    WORD
+;
+
+separated:
+    separated ',' WORD
+|
+    WORD
+;

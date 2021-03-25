@@ -1,0 +1,7 @@
+Fix the R/R problem such that either comma seperated or not seperated words are allowed (not alternating)
+
+word word word -> allowed
+word, word, word -> allowed
+word, word word -> not allowed 
+
+We do so by taking the original plain/seperated structure. The R/R problem arised because the first word can be used in either a plain or a seperate. Our solution is simpel: we take the first word out the plain/ seperated structures. Thus a list starts with a WORD, followed by a plain list or a comma + seperated list. This ensures that once a plain is encountered it stays plain or after a seperated it remains seperated. The plains/sep are optional, so 1 word is allowed. To make this first word optional we can accept an empty list, this is implemented in our grammar file. 
