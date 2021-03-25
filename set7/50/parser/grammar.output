@@ -1,0 +1,161 @@
+[grammar (info)] Line 59: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: lines ->  lines line
+2: lines ->  line
+3: line ('\x0a') ->  expr '\x0a'
+4: line ('\x0a') ->  '\x0a'
+5: expr (NUMBER) ->  NUMBER
+6: expr (uMinus) ->  '-' expr
+7: expr ('+') ->  expr '+' expr
+8: expr ('-') ->  expr '-' expr
+9: expr ('(') ->  '(' expr ')'
+10: lines_$ ->  lines
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: NUMBER
+    43: '+'
+    45: '-'
+   258: uMinus
+    10: '\x0a'
+    40: '('
+    41: ')'
+
+
+Grammar States: 
+
+State 0:
+10: lines_$ ->  . lines 
+  0:   On lines to state 1
+  1:   On line to state 2
+  2:   On expr to state 3
+  3:   On '\x0a' to state 4
+  4:   On NUMBER to state 5
+  5:   On '-' to state 6
+  6:   On '(' to state 7
+
+
+State 1:
+10: lines_$ -> lines  . 
+1: lines -> lines  . line 
+  0:   On line to state 8
+  1:   On expr to state 3
+  2:   On '\x0a' to state 4
+  3:   On NUMBER to state 5
+  4:   On '-' to state 6
+  5:   On '(' to state 7
+
+
+State 2:
+2: lines -> line  . 
+  Reduce by 2: lines -> line  . 
+
+
+State 3:
+3: line -> expr  . '\x0a' 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '-' expr 
+  0:   On '\x0a' to state 9
+  1:   On '+' to state 10
+  2:   On '-' to state 11
+
+
+State 4:
+4: line -> '\x0a'  . 
+  Reduce by 4: line -> '\x0a'  . 
+
+
+State 5:
+5: expr -> NUMBER  . 
+  Reduce by 5: expr -> NUMBER  . 
+
+
+State 6:
+6: expr -> '-'  . expr 
+  0:   On expr to state 12
+  1:   On NUMBER to state 5
+  2:   On '-' to state 6
+  3:   On '(' to state 7
+
+
+State 7:
+9: expr -> '('  . expr ')' 
+  0:   On expr to state 13
+  1:   On NUMBER to state 5
+  2:   On '-' to state 6
+  3:   On '(' to state 7
+
+
+State 8:
+1: lines -> lines line  . 
+  Reduce by 1: lines -> lines line  . 
+
+
+State 9:
+3: line -> expr '\x0a'  . 
+  Reduce by 3: line -> expr '\x0a'  . 
+
+
+State 10:
+7: expr -> expr '+'  . expr 
+  0:   On expr to state 14
+  1:   On NUMBER to state 5
+  2:   On '-' to state 6
+  3:   On '(' to state 7
+
+
+State 11:
+8: expr -> expr '-'  . expr 
+  0:   On expr to state 15
+  1:   On NUMBER to state 5
+  2:   On '-' to state 6
+  3:   On '(' to state 7
+
+
+State 12:
+6: expr -> '-' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '-' expr 
+  0 (removed by precedence):   On '+' to state 10
+  1 (removed by precedence):   On '-' to state 11
+  Reduce by 6: expr -> '-' expr  . 
+
+
+State 13:
+9: expr -> '(' expr  . ')' 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '-' expr 
+  0:   On ')' to state 16
+  1:   On '+' to state 10
+  2:   On '-' to state 11
+
+
+State 14:
+7: expr -> expr '+' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '-' expr 
+  0 (removed by precedence):   On '+' to state 10
+  1 (removed by precedence):   On '-' to state 11
+  Reduce by 7: expr -> expr '+' expr  . 
+
+
+State 15:
+8: expr -> expr '-' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '-' expr 
+  0 (removed by precedence):   On '+' to state 10
+  1 (removed by precedence):   On '-' to state 11
+  Reduce by 8: expr -> expr '-' expr  . 
+
+
+State 16:
+9: expr -> '(' expr ')'  . 
+  Reduce by 9: expr -> '(' expr ')'  . 
+
+
+

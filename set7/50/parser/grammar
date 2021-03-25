@@ -1,0 +1,58 @@
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/scanner.h
+
+%token  NUMBER
+
+%left   '+' '-'
+%right  uMinus
+
+//%debug
+
+%%
+
+lines:
+    lines line
+|
+    line
+;
+
+
+line:
+    expr '\n'
+    {
+        std::cout << $1 << '\n';
+    }   
+|
+    '\n'
+;
+
+
+expr:
+    NUMBER
+    {
+        $$ = $1;
+    }
+|
+    '-' expr            %prec uMinus
+    {
+        $$ = -$2;
+    }
+|
+    expr '+' expr
+    {
+        $$ = $1 + $3;
+    }    
+|
+    expr '-' expr
+    {
+        $$ = $1 - $3;
+
+    }    
+|
+    '(' expr ')'
+    {
+        $$ = $2;
+    }
+;

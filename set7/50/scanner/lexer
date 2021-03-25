@@ -1,0 +1,16 @@
+%filenames scanner
+%interactive
+
+digits      [0-9]+
+optdigits   [0-9]*
+exp         [eE][-+]?{digits}
+
+%%
+
+[ \t]+                                  //remove whitespaces
+
+{digits}                                |
+{digits}"."{optdigits}{exp}?            |
+{optdigits}"."{digits}{exp}?            return Parser::NUMBER;
+
+\n                                      return matched()[0];
