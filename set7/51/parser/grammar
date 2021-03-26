@@ -1,0 +1,22 @@
+%baseclass-preinclude   cmath
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/Scanner.h
+
+%token  NUMBER 
+
+%right '-' '+'
+
+//%debug
+    
+%%
+
+expr:
+    NUMBER
+|
+    expr '+' expr
+|
+    expr '-' expr
+;
+ 

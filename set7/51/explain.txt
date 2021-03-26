@@ -1,0 +1,41 @@
+While parsing bisonc++ gives us the following warning messages indicating that there are tree conflicts in this exercise: 2 SR and 1 RR.
+
+[Warning] 4 Shift/Reduce conflict(s)
+   rule 3 (grammar, line 18): shifts at     43: '+',     45: '-', 
+   rule 4 (grammar, line 20): shifts at     43: '+',     45: '-', 
+[Warning] 3 Reduce/Reduce conflict(s)
+   keeping rule 1 (grammar, line 14), dropping
+        rule 5 (grammar, line 24)
+
+The RR conflict eixst because an expr can be a NUMBER token or it can be a number which is a NUMBER token. Suppose we just received a NUMBER token from the scanner. There are two possible ways to process this token, namely it is an expr according to rule 1; or it is a number. This is an ambiguity because we don't know which one was meant. Bisonc++ and the grammar.output file tells us that rule 1 is kept and rule 5 is removed.
+
+ keeping rule 1 (grammar, line 14), dropping
+        rule 5 (grammar, line 24)
+
+rule 5 is:
+
+number:
+    NUMBER
+;
+
+Bisonc++ informs us that the SR conflict arises at state 5. This problem arises when we have multiple + or - signs. For an expresion like 3 + 4 + 5 there are two ways to process. We could first reduce 3 + 4 and then add 5 (LEFT) to it or first reduce 4 + 5 and add 3 (RIGHT). In grammar.output we see that bisonc++ solved the conflict by removing the +/- from the left set. This means that right association will be used (first shift). 
+
+Solved SR CONFLICT on '+':
+    shift to state 3, removed '+' from LA-set of rule 2)
+Solved SR CONFLICT on '-':
+    shift to state 4, removed '-' from LA-set of rule 2)
+
+We can enforce bisonc++ to use right association by using %right. Since the operators must have equal precedence, we put them on 1 line. The fixed grammar looks like: 
+
+%token NUMBER
+%right '-' '+'
+%%
+
+expr:
+    NUMBER
+|
+    expr '+' expr
+|
+    expr '-' expr
+;
+

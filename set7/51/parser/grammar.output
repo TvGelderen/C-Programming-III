@@ -1,0 +1,71 @@
+[grammar (info)] Line 22: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: expr (NUMBER) ->  NUMBER
+2: expr ('+') ->  expr '+' expr
+3: expr ('-') ->  expr '-' expr
+4: expr_$ ->  expr
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: NUMBER
+    45: '-'
+    43: '+'
+
+
+Grammar States: 
+
+State 0:
+4: expr_$ ->  . expr 
+  0:   On expr to state 1
+  1:   On NUMBER to state 2
+
+
+State 1:
+4: expr_$ -> expr  . 
+2: expr -> expr  . '+' expr 
+3: expr -> expr  . '-' expr 
+  0:   On '+' to state 3
+  1:   On '-' to state 4
+
+
+State 2:
+1: expr -> NUMBER  . 
+  Reduce by 1: expr -> NUMBER  . 
+
+
+State 3:
+2: expr -> expr '+'  . expr 
+  0:   On expr to state 5
+  1:   On NUMBER to state 2
+
+
+State 4:
+3: expr -> expr '-'  . expr 
+  0:   On expr to state 6
+  1:   On NUMBER to state 2
+
+
+State 5:
+2: expr -> expr '+' expr  . 
+2: expr -> expr  . '+' expr 
+3: expr -> expr  . '-' expr 
+  0:   On '+' to state 3
+  1:   On '-' to state 4
+  Reduce by 2: expr -> expr '+' expr  . 
+
+
+State 6:
+3: expr -> expr '-' expr  . 
+2: expr -> expr  . '+' expr 
+3: expr -> expr  . '-' expr 
+  0:   On '+' to state 3
+  1:   On '-' to state 4
+  Reduce by 3: expr -> expr '-' expr  . 
+
+
+
