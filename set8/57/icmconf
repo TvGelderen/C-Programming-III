@@ -1,0 +1,36 @@
+#define PRECOMP             "-x c++-header"
+//#define USE_ALL             "a"
+
+#define CXX                 "g++"
+
+#define CXXFLAGS    "--std=c++2a -Wall -O2 -fdiagnostics-color=never"
+#define LDFLAGS             "-s"
+
+#define MAIN                "main.cc"
+//#define ADD_LIBRARIES       ""
+//#define ADD_LIBRARY_PATHS   ""
+#define REFRESH
+//#define LIBRARY             ""
+#define IH                  ".ih"
+#define SHAREDREQ           ""
+#define SOURCES             "*.cc"
+#define USE_ECHO              ON
+#define TMP_DIR             "tmp"
+#define OBJ_EXT             ".o"
+
+#define PARSER_DIR          "parser"
+#define PARSGEN             "bisonc++"
+#define PARSFLAGS           ""
+#define PARSSPEC            "grammar"
+#define PARSFILES           "inc/*"
+#define PARSOUT             "parse.cc"
+
+#define SCANNER_DIR         "scanner"  
+#define SCANGEN             "flexc++"
+#define SCANFLAGS           ""
+#define SCANSPEC            "lexer"
+#define SCANOUT             "lex.cc"
+
+#define DEFCOM              "program"
+
+
