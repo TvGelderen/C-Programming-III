@@ -1,0 +1,247 @@
+[grammar (info)] Line 99: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: lines ->  lines line
+2: lines ->  line
+3: line ('\x0a') ->  expr '\x0a'
+4: line (EXIT) ->  EXIT '\x0a'
+5: line (LIST) ->  LIST '\x0a'
+6: line (errTok_) ->  errTok_ '\x0a'
+7: line ('\x0a') ->  '\x0a'
+8: expr (NUMBER) ->  NUMBER
+9: expr (IDENT) ->  IDENT
+10: expr (uMinus) ->  '-' expr
+11: expr ('+') ->  expr '+' expr
+12: expr ('-') ->  expr '-' expr
+13: expr ('(') ->  '(' expr ')'
+14: expr ('=') ->  expr '=' expr
+15: lines_$ ->  lines
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: NUMBER
+   258: EXIT
+   259: LIST
+   260: IDENT
+    61: '='
+    43: '+'
+    45: '-'
+   261: uMinus
+    10: '\x0a'
+    40: '('
+    41: ')'
+
+
+Grammar States: 
+
+State 0:
+15: lines_$ ->  . lines 
+  0:   On lines to state 1
+  1:   On line to state 2
+  2:   On expr to state 3
+  3:   On EXIT to state 4
+  4:   On LIST to state 5
+  5:   On errTok_ to state 6
+  6:   On '\x0a' to state 7
+  7:   On NUMBER to state 8
+  8:   On IDENT to state 9
+  9:   On '-' to state 10
+  10:   On '(' to state 11
+
+
+State 1:
+15: lines_$ -> lines  . 
+1: lines -> lines  . line 
+  0:   On line to state 12
+  1:   On expr to state 3
+  2:   On EXIT to state 4
+  3:   On LIST to state 5
+  4:   On errTok_ to state 6
+  5:   On '\x0a' to state 7
+  6:   On NUMBER to state 8
+  7:   On IDENT to state 9
+  8:   On '-' to state 10
+  9:   On '(' to state 11
+
+
+State 2:
+2: lines -> line  . 
+  Reduce by 2: lines -> line  . 
+
+
+State 3:
+3: line -> expr  . '\x0a' 
+11: expr -> expr  . '+' expr 
+12: expr -> expr  . '-' expr 
+14: expr -> expr  . '=' expr 
+  0:   On '\x0a' to state 13
+  1:   On '+' to state 14
+  2:   On '-' to state 15
+  3:   On '=' to state 16
+
+
+State 4:
+4: line -> EXIT  . '\x0a' 
+  0:   On '\x0a' to state 17
+
+
+State 5:
+5: line -> LIST  . '\x0a' 
+  0:   On '\x0a' to state 18
+
+
+State 6:
+6: line -> errTok_  . '\x0a' 
+  0:   On '\x0a' to state 19
+
+
+State 7:
+7: line -> '\x0a'  . 
+  Reduce by 7: line -> '\x0a'  . 
+
+
+State 8:
+8: expr -> NUMBER  . 
+  Reduce by 8: expr -> NUMBER  . 
+
+
+State 9:
+9: expr -> IDENT  . 
+  Reduce by 9: expr -> IDENT  . 
+
+
+State 10:
+10: expr -> '-'  . expr 
+  0:   On expr to state 20
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '(' to state 11
+
+
+State 11:
+13: expr -> '('  . expr ')' 
+  0:   On expr to state 21
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '(' to state 11
+
+
+State 12:
+1: lines -> lines line  . 
+  Reduce by 1: lines -> lines line  . 
+
+
+State 13:
+3: line -> expr '\x0a'  . 
+  Reduce by 3: line -> expr '\x0a'  . 
+
+
+State 14:
+11: expr -> expr '+'  . expr 
+  0:   On expr to state 22
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '(' to state 11
+
+
+State 15:
+12: expr -> expr '-'  . expr 
+  0:   On expr to state 23
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '(' to state 11
+
+
+State 16:
+14: expr -> expr '='  . expr 
+  0:   On expr to state 24
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '(' to state 11
+
+
+State 17:
+4: line -> EXIT '\x0a'  . 
+  Reduce by 4: line -> EXIT '\x0a'  . 
+
+
+State 18:
+5: line -> LIST '\x0a'  . 
+  Reduce by 5: line -> LIST '\x0a'  . 
+
+
+State 19:
+6: line -> errTok_ '\x0a'  . 
+  Reduce by 6: line -> errTok_ '\x0a'  . 
+
+
+State 20:
+10: expr -> '-' expr  . 
+11: expr -> expr  . '+' expr 
+12: expr -> expr  . '-' expr 
+14: expr -> expr  . '=' expr 
+  0 (removed by precedence):   On '+' to state 14
+  1 (removed by precedence):   On '-' to state 15
+  2 (removed by precedence):   On '=' to state 16
+  Reduce by 10: expr -> '-' expr  . 
+
+
+State 21:
+13: expr -> '(' expr  . ')' 
+11: expr -> expr  . '+' expr 
+12: expr -> expr  . '-' expr 
+14: expr -> expr  . '=' expr 
+  0:   On ')' to state 25
+  1:   On '+' to state 14
+  2:   On '-' to state 15
+  3:   On '=' to state 16
+
+
+State 22:
+11: expr -> expr '+' expr  . 
+11: expr -> expr  . '+' expr 
+12: expr -> expr  . '-' expr 
+14: expr -> expr  . '=' expr 
+  0 (removed by precedence):   On '+' to state 14
+  1 (removed by precedence):   On '-' to state 15
+  2 (removed by precedence):   On '=' to state 16
+  Reduce by 11: expr -> expr '+' expr  . 
+
+
+State 23:
+12: expr -> expr '-' expr  . 
+11: expr -> expr  . '+' expr 
+12: expr -> expr  . '-' expr 
+14: expr -> expr  . '=' expr 
+  0 (removed by precedence):   On '+' to state 14
+  1 (removed by precedence):   On '-' to state 15
+  2 (removed by precedence):   On '=' to state 16
+  Reduce by 12: expr -> expr '-' expr  . 
+
+
+State 24:
+14: expr -> expr '=' expr  . 
+11: expr -> expr  . '+' expr 
+12: expr -> expr  . '-' expr 
+14: expr -> expr  . '=' expr 
+  0:   On '+' to state 14
+  1:   On '-' to state 15
+  2:   On '=' to state 16
+  Reduce by 14: expr -> expr '=' expr  . 
+
+
+State 25:
+13: expr -> '(' expr ')'  . 
+  Reduce by 13: expr -> '(' expr ')'  . 
+
+
+

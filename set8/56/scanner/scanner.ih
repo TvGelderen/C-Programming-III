@@ -1,0 +1,4 @@
+// $insert class_h
+#include "scanner.h"
+
+#include "../tokens/tokens.h"
