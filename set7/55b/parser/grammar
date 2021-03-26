@@ -1,0 +1,32 @@
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/scanner.h
+
+%token 'm' 's' DOUBLE INTEGRAL
+
+//%debug 
+
+%%
+
+input:    
+    //empty
+|
+    input line
+;
+
+ line: 
+    '\n'
+    {
+        ACCEPT();
+    }
+|  
+    'm' DOUBLE '\n'
+| 
+    's' DOUBLE '\n'
+| 
+    DOUBLE  '\n'
+| 
+    DOUBLE INTEGRAL '\n'
+;
+

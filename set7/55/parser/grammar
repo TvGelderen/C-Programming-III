@@ -1,0 +1,38 @@
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/scanner.h
+
+%token 'm' 's' DOUBLE INTEGRAL
+
+//%debug 
+
+%%
+
+input:    
+    prompt 
+| 
+    input line
+;
+
+ line: 
+    '\n'
+    {
+        ACCEPT();
+    }
+|  
+    'm' DOUBLE '\n' prompt
+| 
+    's' DOUBLE '\n' prompt
+| 
+    DOUBLE  '\n' prompt
+| 
+    DOUBLE INTEGRAL '\n' prompt
+;
+
+prompt:
+    {
+        std::cout << "? ";      // or 'cout', when using namespace std
+    }
+;
+

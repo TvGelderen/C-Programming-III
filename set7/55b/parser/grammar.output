@@ -1,0 +1,106 @@
+[grammar (info)] Line 33: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: input ->  <empty>
+2: input ->  input line
+3: line ('\x0a') ->  '\x0a'
+4: line ('m') ->  'm' DOUBLE '\x0a'
+5: line ('s') ->  's' DOUBLE '\x0a'
+6: line (DOUBLE) ->  DOUBLE '\x0a'
+7: line (DOUBLE) ->  DOUBLE INTEGRAL '\x0a'
+8: input_$ ->  input
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   109: 'm'
+   115: 's'
+   257: DOUBLE
+   258: INTEGRAL
+    10: '\x0a'
+
+
+Grammar States: 
+
+State 0:
+8: input_$ ->  . input 
+  0:   On input to state 1
+  Reduce by 1: input ->  . 
+
+
+State 1:
+8: input_$ -> input  . 
+2: input -> input  . line 
+  0:   On line to state 2
+  1:   On '\x0a' to state 3
+  2:   On 'm' to state 4
+  3:   On 's' to state 5
+  4:   On DOUBLE to state 6
+
+
+State 2:
+2: input -> input line  . 
+  Reduce by 2: input -> input line  . 
+
+
+State 3:
+3: line -> '\x0a'  . 
+  Reduce by 3: line -> '\x0a'  . 
+
+
+State 4:
+4: line -> 'm'  . DOUBLE '\x0a' 
+  0:   On DOUBLE to state 7
+
+
+State 5:
+5: line -> 's'  . DOUBLE '\x0a' 
+  0:   On DOUBLE to state 8
+
+
+State 6:
+6: line -> DOUBLE  . '\x0a' 
+7: line -> DOUBLE  . INTEGRAL '\x0a' 
+  0:   On '\x0a' to state 9
+  1:   On INTEGRAL to state 10
+
+
+State 7:
+4: line -> 'm' DOUBLE  . '\x0a' 
+  0:   On '\x0a' to state 11
+
+
+State 8:
+5: line -> 's' DOUBLE  . '\x0a' 
+  0:   On '\x0a' to state 12
+
+
+State 9:
+6: line -> DOUBLE '\x0a'  . 
+  Reduce by 6: line -> DOUBLE '\x0a'  . 
+
+
+State 10:
+7: line -> DOUBLE INTEGRAL  . '\x0a' 
+  0:   On '\x0a' to state 13
+
+
+State 11:
+4: line -> 'm' DOUBLE '\x0a'  . 
+  Reduce by 4: line -> 'm' DOUBLE '\x0a'  . 
+
+
+State 12:
+5: line -> 's' DOUBLE '\x0a'  . 
+  Reduce by 5: line -> 's' DOUBLE '\x0a'  . 
+
+
+State 13:
+7: line -> DOUBLE INTEGRAL '\x0a'  . 
+  Reduce by 7: line -> DOUBLE INTEGRAL '\x0a'  . 
+
+
+

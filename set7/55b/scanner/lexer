@@ -1,0 +1,7 @@
+%filenames scanner
+%interactive
+
+%%
+[\ \t]                                  //ignore comments!
+[[:digit:]]+                            return Parser::DOUBLE;                                             
+.|\n                                    return matched()[0];
