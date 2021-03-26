@@ -1,0 +1,67 @@
+%baseclass-preinclude   cmath
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/Scanner.h
+
+%stype  double
+%token NR '!' '='
+
+%left INEQ
+%left '+'
+%left '*'
+%left '^'
+%right '-'
+
+
+//%debug
+
+%%
+
+input:    
+        // empty 
+| 
+        input line
+;
+
+line:   
+        '\n'
+| 
+        expr '\n'  
+        { 
+            std::cout << "Result:" << $1 << '\n';
+        }
+;
+
+
+expr:
+    NR
+    {
+        $$ = std::stod(d_scanner.matched());
+    }
+|
+    '-' expr
+    {
+        $$ = -$2;
+    }
+|
+    expr '+' expr
+    {
+        $$ = $1 + $3;
+    }
+|
+    expr '*' expr
+    {
+        $$ = $1 * $3;
+    }
+|
+     expr '^' expr
+    {
+        $$ = pow($1, $3);
+    }
+|
+    expr  '!' '=' expr %prec INEQ
+    {
+        $$ = $1 != $4;
+    }
+;

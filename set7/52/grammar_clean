@@ -1,0 +1,23 @@
+%token NR '!' '='
+
+%left INEQ
+%left '+'
+%left '*'
+%left '^'               //higher than
+%right '-'
+
+%%
+
+expr:
+    NR
+|
+    '-' expr
+|
+    expr '+' expr
+|
+    expr '*' expr
+|
+    expr '^' expr
+|
+    expr  '!' '=' expr %prec INEQ
+;

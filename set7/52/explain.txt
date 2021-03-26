@@ -1,0 +1,19 @@
+We added '!' and '=' as seperate tokens. This ensures the scanner will recognize them. Next we added the '^' below multiply but above -. This gives it a higher priority than multiply, but less than -. The rule is simply expr '^' expr. For inequality we used the following rule: expr '!' '=' expr. To determine the priority %prec is used that refers to INEQ. INEQ is positioned above '+' so that it has a lower priority than addition. 
+
+
+Some testing:
+
+2^3
+Result:8                -> power works
+
+6*2^3
+Result:48               -> power first!
+
+9^-1
+Result:0.111111         -> negate before power
+
+4 + 7 != 12
+Result:1                -> they are unequal 
+
+4 + 7 != 11
+Result:0                -> they are equal, implying + went before !=

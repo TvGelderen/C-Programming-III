@@ -1,0 +1,189 @@
+[grammar (info)] Line 69: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: input ->  <empty>
+2: input ->  input line
+3: line ('\x0a') ->  '\x0a'
+4: line ('\x0a') ->  expr '\x0a'
+5: expr (NR) ->  NR
+6: expr ('-') ->  '-' expr
+7: expr ('+') ->  expr '+' expr
+8: expr ('*') ->  expr '*' expr
+9: expr ('^') ->  expr '^' expr
+10: expr (INEQ) ->  expr '!' '=' expr
+11: input_$ ->  input
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: NR
+    33: '!'
+    61: '='
+   258: INEQ
+    43: '+'
+    42: '*'
+    94: '^'
+    45: '-'
+    10: '\x0a'
+
+
+Grammar States: 
+
+State 0:
+11: input_$ ->  . input 
+  0:   On input to state 1
+  Reduce by 1: input ->  . 
+
+
+State 1:
+11: input_$ -> input  . 
+2: input -> input  . line 
+  0:   On line to state 2
+  1:   On '\x0a' to state 3
+  2:   On expr to state 4
+  3:   On NR to state 5
+  4:   On '-' to state 6
+
+
+State 2:
+2: input -> input line  . 
+  Reduce by 2: input -> input line  . 
+
+
+State 3:
+3: line -> '\x0a'  . 
+  Reduce by 3: line -> '\x0a'  . 
+
+
+State 4:
+4: line -> expr  . '\x0a' 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+9: expr -> expr  . '^' expr 
+10: expr -> expr  . '!' '=' expr 
+  0:   On '\x0a' to state 7
+  1:   On '+' to state 8
+  2:   On '*' to state 9
+  3:   On '^' to state 10
+  4:   On '!' to state 11
+
+
+State 5:
+5: expr -> NR  . 
+  Reduce by 5: expr -> NR  . 
+
+
+State 6:
+6: expr -> '-'  . expr 
+  0:   On expr to state 12
+  1:   On NR to state 5
+  2:   On '-' to state 6
+
+
+State 7:
+4: line -> expr '\x0a'  . 
+  Reduce by 4: line -> expr '\x0a'  . 
+
+
+State 8:
+7: expr -> expr '+'  . expr 
+  0:   On expr to state 13
+  1:   On NR to state 5
+  2:   On '-' to state 6
+
+
+State 9:
+8: expr -> expr '*'  . expr 
+  0:   On expr to state 14
+  1:   On NR to state 5
+  2:   On '-' to state 6
+
+
+State 10:
+9: expr -> expr '^'  . expr 
+  0:   On expr to state 15
+  1:   On NR to state 5
+  2:   On '-' to state 6
+
+
+State 11:
+10: expr -> expr '!'  . '=' expr 
+  0:   On '=' to state 16
+
+
+State 12:
+6: expr -> '-' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+9: expr -> expr  . '^' expr 
+10: expr -> expr  . '!' '=' expr 
+  0 (removed by precedence):   On '+' to state 8
+  1 (removed by precedence):   On '*' to state 9
+  2 (removed by precedence):   On '^' to state 10
+  3 (removed by precedence):   On '!' to state 11
+  Reduce by 6: expr -> '-' expr  . 
+
+
+State 13:
+7: expr -> expr '+' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+9: expr -> expr  . '^' expr 
+10: expr -> expr  . '!' '=' expr 
+  0 (removed by precedence):   On '+' to state 8
+  1:   On '*' to state 9
+  2:   On '^' to state 10
+  3 (removed by precedence):   On '!' to state 11
+  Reduce by 7: expr -> expr '+' expr  . 
+
+
+State 14:
+8: expr -> expr '*' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+9: expr -> expr  . '^' expr 
+10: expr -> expr  . '!' '=' expr 
+  0 (removed by precedence):   On '+' to state 8
+  1 (removed by precedence):   On '*' to state 9
+  2:   On '^' to state 10
+  3 (removed by precedence):   On '!' to state 11
+  Reduce by 8: expr -> expr '*' expr  . 
+
+
+State 15:
+9: expr -> expr '^' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+9: expr -> expr  . '^' expr 
+10: expr -> expr  . '!' '=' expr 
+  0 (removed by precedence):   On '+' to state 8
+  1 (removed by precedence):   On '*' to state 9
+  2 (removed by precedence):   On '^' to state 10
+  3 (removed by precedence):   On '!' to state 11
+  Reduce by 9: expr -> expr '^' expr  . 
+
+
+State 16:
+10: expr -> expr '!' '='  . expr 
+  0:   On expr to state 17
+  1:   On NR to state 5
+  2:   On '-' to state 6
+
+
+State 17:
+10: expr -> expr '!' '=' expr  . 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+9: expr -> expr  . '^' expr 
+10: expr -> expr  . '!' '=' expr 
+  0:   On '+' to state 8
+  1:   On '*' to state 9
+  2:   On '^' to state 10
+  3 (removed by precedence):   On '!' to state 11
+  Reduce by 10: expr -> expr '!' '=' expr  . 
+
+
+
