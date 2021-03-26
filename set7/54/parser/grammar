@@ -3,19 +3,16 @@
 %parsefun-source parse.cc
 %scanner ../scanner/scanner.h
 
-%token WORD 
-%left ','
+%token WORD ','
 
 %debug 
 
 %%
 
 list:
-    WORD plain
+    plain
 |
     WORD ',' separated
-|   
-    WORD
 |
     //empty
 ;
