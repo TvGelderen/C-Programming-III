@@ -1,0 +1,180 @@
+[grammar (info)] Line 44: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: line ->  expr
+2: line ->  <empty>
+3: expr (NR) ->  NR
+4: expr (IDENT) ->  IDENT
+5: expr ->  expr indexes
+6: expr ('-') ->  '-' expr
+7: expr ('+') ->  expr '+' expr
+8: expr ('*') ->  expr '*' expr
+9: indexes ->  indexes index
+10: indexes ->  index
+11: index ('[') ->  '[' expr ']'
+12: line_$ ->  line
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: IDENT
+   258: NR
+    43: '+'
+    42: '*'
+    45: '-'
+    91: '['
+    93: ']'
+
+
+Grammar States: 
+
+State 0:
+12: line_$ ->  . line 
+  0:   On line to state 1
+  1:   On expr to state 2
+  2:   On NR to state 3
+  3:   On IDENT to state 4
+  4:   On '-' to state 5
+  Reduce by 2: line ->  . 
+
+
+State 1:
+12: line_$ -> line  . 
+
+
+State 2:
+1: line -> expr  . 
+5: expr -> expr  . indexes 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On indexes to state 6
+  1:   On '+' to state 7
+  2:   On '*' to state 8
+  3:   On index to state 9
+  4:   On '[' to state 10
+  Reduce by 1: line -> expr  . 
+
+
+State 3:
+3: expr -> NR  . 
+  Reduce by 3: expr -> NR  . 
+
+
+State 4:
+4: expr -> IDENT  . 
+  Reduce by 4: expr -> IDENT  . 
+
+
+State 5:
+6: expr -> '-'  . expr 
+  0:   On expr to state 11
+  1:   On NR to state 3
+  2:   On IDENT to state 4
+  3:   On '-' to state 5
+
+
+State 6:
+5: expr -> expr indexes  . 
+9: indexes -> indexes  . index 
+  0:   On index to state 12
+  1:   On '[' to state 10
+  Reduce by 5: expr -> expr indexes  . 
+Solved SR CONFLICT on '[':
+	shift to state 10, removed '[' from LA-set of rule 5)
+
+
+State 7:
+7: expr -> expr '+'  . expr 
+  0:   On expr to state 13
+  1:   On NR to state 3
+  2:   On IDENT to state 4
+  3:   On '-' to state 5
+
+
+State 8:
+8: expr -> expr '*'  . expr 
+  0:   On expr to state 14
+  1:   On NR to state 3
+  2:   On IDENT to state 4
+  3:   On '-' to state 5
+
+
+State 9:
+10: indexes -> index  . 
+  Reduce by 10: indexes -> index  . 
+
+
+State 10:
+11: index -> '['  . expr ']' 
+  0:   On expr to state 15
+  1:   On NR to state 3
+  2:   On IDENT to state 4
+  3:   On '-' to state 5
+
+
+State 11:
+6: expr -> '-' expr  . 
+5: expr -> expr  . indexes 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On indexes to state 6
+  1 (removed by precedence):   On '+' to state 7
+  2 (removed by precedence):   On '*' to state 8
+  3:   On index to state 9
+  4 (removed by precedence):   On '[' to state 10
+  Reduce by 6: expr -> '-' expr  . 
+
+
+State 12:
+9: indexes -> indexes index  . 
+  Reduce by 9: indexes -> indexes index  . 
+
+
+State 13:
+7: expr -> expr '+' expr  . 
+5: expr -> expr  . indexes 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On indexes to state 6
+  1 (removed by precedence):   On '+' to state 7
+  2:   On '*' to state 8
+  3:   On index to state 9
+  4 (removed by precedence):   On '[' to state 10
+  Reduce by 7: expr -> expr '+' expr  . 
+
+
+State 14:
+8: expr -> expr '*' expr  . 
+5: expr -> expr  . indexes 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On indexes to state 6
+  1 (removed by precedence):   On '+' to state 7
+  2 (removed by precedence):   On '*' to state 8
+  3:   On index to state 9
+  4 (removed by precedence):   On '[' to state 10
+  Reduce by 8: expr -> expr '*' expr  . 
+
+
+State 15:
+11: index -> '[' expr  . ']' 
+5: expr -> expr  . indexes 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On ']' to state 16
+  1:   On indexes to state 6
+  2:   On '+' to state 7
+  3:   On '*' to state 8
+  4:   On index to state 9
+  5:   On '[' to state 10
+
+
+State 16:
+11: index -> '[' expr ']'  . 
+  Reduce by 11: index -> '[' expr ']'  . 
+
+
+

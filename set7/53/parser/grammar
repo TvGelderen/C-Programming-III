@@ -1,0 +1,43 @@
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/Scanner.h
+
+%debug
+
+%token IDENT NR
+%left '+'
+%left '*'
+%right '-'
+
+%%
+
+line:
+    expr
+|
+    // empty
+;
+
+expr:
+    NR
+|
+    IDENT
+|
+    expr indexes
+|
+    '-' expr
+|
+    expr '+' expr
+|
+    expr '*' expr
+;
+
+indexes:
+    indexes index
+|
+    index
+;
+
+index:
+    '[' expr ']'
+;

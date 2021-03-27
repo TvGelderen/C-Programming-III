@@ -1,0 +1,19 @@
+The following grammar would recognize function calls to write:
+
+    write:
+        WRITE '(' params ')'
+    ;
+
+    params:
+        params ',' param
+    |
+        param
+    |
+        // empty
+    ;
+
+    param:
+        IDENT
+    |
+        NUMBER
+    ;
