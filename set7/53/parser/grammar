@@ -6,9 +6,11 @@
 // %debug
 
 %token IDENT NR
+
 %left '+'
 %left '*'
 %right '-'
+
 
 %%
 
@@ -17,19 +19,13 @@ expr:
 |
     IDENT
 |
-    expr indexes
+    expr index
 |
     '-' expr
 |
     expr '+' expr
 |
     expr '*' expr
-;
-
-indexes:
-    indexes index
-|
-    index
 ;
 
 index:
