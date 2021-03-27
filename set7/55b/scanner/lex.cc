@@ -441,8 +441,9 @@ void ScannerBase::print_() const
 // $insert interactiveLex
 bool ScannerBase::interactiveLine()
 {
+    std::cout << '?';
+    
     std::string line;
-
     if (not std::getline(*d_in, line))
         return false;
 

@@ -3,7 +3,10 @@
 %parsefun-source parse.cc
 %scanner ../scanner/scanner.h
 
-%token 'm' 's' DOUBLE INTEGRAL
+%token 'm' 
+%token 's'
+%token DOUBLE 
+%token INTEGRAL
 
 //%debug 
 
