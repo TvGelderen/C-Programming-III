@@ -3,7 +3,7 @@
 %parsefun-source parse.cc
 %scanner ../scanner/scanner.h
 
-%token WORD ','
+%token WORD
 
 %debug 
 

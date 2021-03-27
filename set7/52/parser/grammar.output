@@ -1,4 +1,4 @@
-[grammar (info)] Line 69: 
+[grammar (info)] Line 68: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;
@@ -20,14 +20,14 @@ Symbolic Terminal tokens:
        error
        EOF
    257: NR
-    33: '!'
-    61: '='
    258: INEQ
     43: '+'
     42: '*'
     94: '^'
     45: '-'
     10: '\x0a'
+    33: '!'
+    61: '='
 
 
 Grammar States: 

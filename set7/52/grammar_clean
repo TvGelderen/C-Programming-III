@@ -1,9 +1,9 @@
-%token NR '!' '='
+%token NR
 
-%left INEQ
+%left INEQ	   // lower than addition
 %left '+'
 %left '*'
-%left '^'               //higher than
+%left '^'          //higher than multiply, low neg
 %right '-'
 
 %%

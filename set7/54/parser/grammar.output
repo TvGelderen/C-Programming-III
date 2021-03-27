@@ -1,17 +1,16 @@
-[grammar (info)] Line 34: 
+[grammar (info)] Line 31: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;
     or (if not shown) are equal to the default (max) precedence)
-1: list (WORD) ->  WORD plain
+1: list ->  plain
 2: list (WORD) ->  WORD ',' separated
-3: list (WORD) ->  WORD
-4: list ->  <empty>
-5: plain (WORD) ->  plain WORD
-6: plain (WORD) ->  WORD
-7: separated (',') ->  separated ',' WORD
-8: separated (WORD) ->  WORD
-9: list_$ ->  list
+3: list ->  <empty>
+4: plain (WORD) ->  plain WORD
+5: plain (WORD) ->  WORD
+6: separated (',') ->  separated ',' WORD
+7: separated (WORD) ->  WORD
+8: list_$ ->  list
 
 
 Symbolic Terminal tokens:
@@ -24,69 +23,62 @@ Symbolic Terminal tokens:
 Grammar States: 
 
 State 0:
-9: list_$ ->  . list 
+8: list_$ ->  . list 
   0:   On list to state 1
-  1:   On WORD to state 2
-  Reduce by 4: list ->  . 
+  1:   On plain to state 2
+  2:   On WORD to state 3
+  Reduce by 3: list ->  . 
 
 
 State 1:
-9: list_$ -> list  . 
+8: list_$ -> list  . 
 
 
 State 2:
-1: list -> WORD  . plain 
-2: list -> WORD  . ',' separated 
-3: list -> WORD  . 
-  0:   On plain to state 3
-  1:   On ',' to state 4
-  2:   On WORD to state 5
-  Reduce by 3: list -> WORD  . 
+1: list -> plain  . 
+4: plain -> plain  . WORD 
+  0:   On WORD to state 4
+  Reduce by 1: list -> plain  . 
 
 
 State 3:
-1: list -> WORD plain  . 
-5: plain -> plain  . WORD 
-  0:   On WORD to state 6
-  Reduce by 1: list -> WORD plain  . 
+2: list -> WORD  . ',' separated 
+5: plain -> WORD  . 
+  0:   On ',' to state 5
+  Reduce by 5: plain -> WORD  . 
 
 
 State 4:
-2: list -> WORD ','  . separated 
-  0:   On separated to state 7
-  1:   On WORD to state 8
+4: plain -> plain WORD  . 
+  Reduce by 4: plain -> plain WORD  . 
 
 
 State 5:
-6: plain -> WORD  . 
-  Reduce by 6: plain -> WORD  . 
+2: list -> WORD ','  . separated 
+  0:   On separated to state 6
+  1:   On WORD to state 7
 
 
 State 6:
-5: plain -> plain WORD  . 
-  Reduce by 5: plain -> plain WORD  . 
-
-
-State 7:
 2: list -> WORD ',' separated  . 
-7: separated -> separated  . ',' WORD 
-  0:   On ',' to state 9
+6: separated -> separated  . ',' WORD 
+  0:   On ',' to state 8
   Reduce by 2: list -> WORD ',' separated  . 
 
 
+State 7:
+7: separated -> WORD  . 
+  Reduce by 7: separated -> WORD  . 
+
+
 State 8:
-8: separated -> WORD  . 
-  Reduce by 8: separated -> WORD  . 
+6: separated -> separated ','  . WORD 
+  0:   On WORD to state 9
 
 
 State 9:
-7: separated -> separated ','  . WORD 
-  0:   On WORD to state 10
-
-
-State 10:
-7: separated -> separated ',' WORD  . 
-  Reduce by 7: separated -> separated ',' WORD  . 
+6: separated -> separated ',' WORD  . 
+  Reduce by 6: separated -> separated ',' WORD  . 
 
 
 

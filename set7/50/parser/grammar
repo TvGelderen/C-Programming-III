@@ -9,8 +9,8 @@
 
 %left '-' '+'
 %left '*' '/'
-%left NEG     // negation--unary minus 
-%left SQUARE  // square root
+%right NEG     // negation--unary minus 
+%right SQUARE  // square root
 
 
 

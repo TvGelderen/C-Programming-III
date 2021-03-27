@@ -5,7 +5,7 @@
 %scanner ../scanner/Scanner.h
 
 %stype  double
-%token NR '!' '='
+%token NR
 
 %left INEQ
 %left '+'
