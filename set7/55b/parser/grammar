@@ -17,7 +17,6 @@ input:
 |
     input '\n'
     {
-        std::cout << '\n';      // correctly close the program
         ACCEPT();
     }
 ;
