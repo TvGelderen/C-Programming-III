@@ -3,5 +3,5 @@
 %%
 [[:blank:]]                     // ignore
 [[:digit:]]+                    return Parser::NR;
-[[:alpha:]_][[:alnum:]_]*       return Parser::IDENT;
+[[:alpha:]_][[:alnum:]_]*       return Parser::VAR;
 .                               return matched()[0];

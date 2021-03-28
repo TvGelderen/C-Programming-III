@@ -5,7 +5,7 @@
 
 // %debug
 
-%token IDENT NR
+%token VAR NR
 %left '+'
 %left '*'
 %right '-'
@@ -15,21 +15,15 @@
 expr:
     NR
 |
-    IDENT
+    VAR
 |
-    expr indexes
+    expr index
 |
     '-' expr
 |
     expr '+' expr
 |
     expr '*' expr
-;
-
-indexes:
-    indexes index
-|
-    index
 ;
 
 index:
