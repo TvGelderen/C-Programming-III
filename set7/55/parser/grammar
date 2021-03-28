@@ -6,7 +6,7 @@
 %token DOUBLE 
 %token INT
 
-%debug 
+//%debug 
 
 %%
 
