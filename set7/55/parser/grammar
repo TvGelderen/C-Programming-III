@@ -3,39 +3,44 @@
 %parsefun-source parse.cc
 %scanner ../scanner/scanner.h
 
-%token 'm' 
-%token 's'
 %token DOUBLE 
-%token INTEGRAL
+%token INT
 
-//%debug 
+%debug 
 
 %%
 
 input:    
-    prompt 
+    prompt                     // initial prompt
 | 
-    input line
-;
-
- line: 
-    '\n'
+    input line '\n' prompt     // ask new input
+|
+    input '\n'
     {
-        ACCEPT();
+        std::cout << '\n'      // correctly terminate program!
+        ACCEPT();              // terminate
     }
-|  
-    'm' DOUBLE '\n' prompt
-| 
-    's' DOUBLE '\n' prompt
-| 
-    DOUBLE  '\n' prompt
-| 
-    DOUBLE INTEGRAL '\n' prompt
 ;
 
 prompt:
     {
         std::cout << "? ";      // or 'cout', when using namespace std
     }
+;
+
+line: 
+    'm' IntOrDouble             // set mean
+| 
+    's' IntOrDouble             // set sd
+| 
+    IntOrDouble                 // return score
+| 
+    IntOrDouble INT             // return score and nObs
+;
+
+IntOrDouble:
+    DOUBLE
+|
+    INT
 ;
 

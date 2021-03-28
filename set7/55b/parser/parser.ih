@@ -14,9 +14,9 @@ inline void Parser::error()
 // $insert lex
 inline int Parser::lex()
 {
-    if (d_previous == '\n')
-        std::cout << '?';
-    d_previous = d_scanner.lex();    
+    if (d_previous == '\n')         //prompt the user
+        std::cout << '?';           //note: default d_previous = '\n'
+    d_previous = d_scanner.lex();   //get next token
     return d_previous;
 }
 

@@ -1,46 +1,49 @@
-[grammar (info)] Line 39: 
+[grammar (info)] Line 42: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;
     or (if not shown) are equal to the default (max) precedence)
 1: input ->  prompt
-2: input ->  input line
-3: line ('\x0a') ->  '\x0a'
-4: line ('m') ->  'm' DOUBLE '\x0a' prompt
-5: line ('s') ->  's' DOUBLE '\x0a' prompt
-6: line (DOUBLE) ->  DOUBLE '\x0a' prompt
-7: line (DOUBLE) ->  DOUBLE INTEGRAL '\x0a' prompt
-8: prompt ->  <empty>
-9: input_$ ->  input
+2: input ('\x0a') ->  input line '\x0a' prompt
+3: input ('\x0a') ->  input '\x0a'
+4: line ('m') ->  'm' DOUBLE
+5: line ('s') ->  's' DOUBLE
+6: line (DOUBLE) ->  DOUBLE
+7: line (INT) ->  INT
+8: line (DOUBLE) ->  DOUBLE INT
+9: prompt ->  <empty>
+10: input_$ ->  input
 
 
 Symbolic Terminal tokens:
        error
        EOF
+   257: DOUBLE
+   258: INT
+    10: '\x0a'
    109: 'm'
    115: 's'
-   257: DOUBLE
-   258: INTEGRAL
-    10: '\x0a'
 
 
 Grammar States: 
 
 State 0:
-9: input_$ ->  . input 
+10: input_$ ->  . input 
   0:   On input to state 1
   1:   On prompt to state 2
-  Reduce by 8: prompt ->  . 
+  Reduce by 9: prompt ->  . 
 
 
 State 1:
-9: input_$ -> input  . 
-2: input -> input  . line 
+10: input_$ -> input  . 
+2: input -> input  . line '\x0a' prompt 
+3: input -> input  . '\x0a' 
   0:   On line to state 3
   1:   On '\x0a' to state 4
   2:   On 'm' to state 5
   3:   On 's' to state 6
   4:   On DOUBLE to state 7
+  5:   On INT to state 8
 
 
 State 2:
@@ -49,89 +52,61 @@ State 2:
 
 
 State 3:
-2: input -> input line  . 
-  Reduce by 2: input -> input line  . 
+2: input -> input line  . '\x0a' prompt 
+  0:   On '\x0a' to state 9
 
 
 State 4:
-3: line -> '\x0a'  . 
-  Reduce by 3: line -> '\x0a'  . 
+3: input -> input '\x0a'  . 
+  Reduce by 3: input -> input '\x0a'  . 
 
 
 State 5:
-4: line -> 'm'  . DOUBLE '\x0a' prompt 
-  0:   On DOUBLE to state 8
+4: line -> 'm'  . DOUBLE 
+  0:   On DOUBLE to state 10
 
 
 State 6:
-5: line -> 's'  . DOUBLE '\x0a' prompt 
-  0:   On DOUBLE to state 9
+5: line -> 's'  . DOUBLE 
+  0:   On DOUBLE to state 11
 
 
 State 7:
-6: line -> DOUBLE  . '\x0a' prompt 
-7: line -> DOUBLE  . INTEGRAL '\x0a' prompt 
-  0:   On '\x0a' to state 10
-  1:   On INTEGRAL to state 11
+6: line -> DOUBLE  . 
+8: line -> DOUBLE  . INT 
+  0:   On INT to state 12
+  Reduce by 6: line -> DOUBLE  . 
 
 
 State 8:
-4: line -> 'm' DOUBLE  . '\x0a' prompt 
-  0:   On '\x0a' to state 12
+7: line -> INT  . 
+  Reduce by 7: line -> INT  . 
 
 
 State 9:
-5: line -> 's' DOUBLE  . '\x0a' prompt 
-  0:   On '\x0a' to state 13
+2: input -> input line '\x0a'  . prompt 
+  0:   On prompt to state 13
+  Reduce by 9: prompt ->  . 
 
 
 State 10:
-6: line -> DOUBLE '\x0a'  . prompt 
-  0:   On prompt to state 14
-  Reduce by 8: prompt ->  . 
+4: line -> 'm' DOUBLE  . 
+  Reduce by 4: line -> 'm' DOUBLE  . 
 
 
 State 11:
-7: line -> DOUBLE INTEGRAL  . '\x0a' prompt 
-  0:   On '\x0a' to state 15
+5: line -> 's' DOUBLE  . 
+  Reduce by 5: line -> 's' DOUBLE  . 
 
 
 State 12:
-4: line -> 'm' DOUBLE '\x0a'  . prompt 
-  0:   On prompt to state 16
-  Reduce by 8: prompt ->  . 
+8: line -> DOUBLE INT  . 
+  Reduce by 8: line -> DOUBLE INT  . 
 
 
 State 13:
-5: line -> 's' DOUBLE '\x0a'  . prompt 
-  0:   On prompt to state 17
-  Reduce by 8: prompt ->  . 
-
-
-State 14:
-6: line -> DOUBLE '\x0a' prompt  . 
-  Reduce by 6: line -> DOUBLE '\x0a' prompt  . 
-
-
-State 15:
-7: line -> DOUBLE INTEGRAL '\x0a'  . prompt 
-  0:   On prompt to state 18
-  Reduce by 8: prompt ->  . 
-
-
-State 16:
-4: line -> 'm' DOUBLE '\x0a' prompt  . 
-  Reduce by 4: line -> 'm' DOUBLE '\x0a' prompt  . 
-
-
-State 17:
-5: line -> 's' DOUBLE '\x0a' prompt  . 
-  Reduce by 5: line -> 's' DOUBLE '\x0a' prompt  . 
-
-
-State 18:
-7: line -> DOUBLE INTEGRAL '\x0a' prompt  . 
-  Reduce by 7: line -> DOUBLE INTEGRAL '\x0a' prompt  . 
+2: input -> input line '\x0a' prompt  . 
+  Reduce by 2: input -> input line '\x0a' prompt  . 
 
 
 

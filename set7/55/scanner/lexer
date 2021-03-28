@@ -1,7 +1,16 @@
 %filenames scanner
 %interactive
 
+digits      [[:digit:]]+
+optdigits   [[:digit:]]*
+
 %%
-[\ \t]                                  //ignore comments!
-[[:digit:]]+                            return Parser::DOUBLE;                                             
+[ \t]                                  //ignore comments!
+
+
+{digits}                                return Parser::INT;
+
+\-?{digits}\.?{optdigits}  |
+\-?\.{digits}                            return Parser::DOUBLE;
+
 .|\n                                    return matched()[0];
