@@ -24,7 +24,7 @@ input:
 
 prompt:
     {
-        std::cout << "? ";      // or 'cout', when using namespace std
+        std::cout << "? ";     
     }
 ;
 
