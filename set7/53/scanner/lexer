@@ -1,7 +1,0 @@
-%class-name = "Scanner"
-
-%%
-[[:blank:]]                     // ignore
-[[:digit:]]+                    return Parser::NR;
-[[:alpha:]_][[:alnum:]_]*       return Parser::IDENT;
-.                               return matched()[0];
