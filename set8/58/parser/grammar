@@ -1,0 +1,80 @@
+%baseclass-preinclude   cmath
+%class-name Parser
+%filenames parser
+%parsefun-source parse.cc
+%scanner ../scanner/scanner.h
+
+%stype  double
+%token  NUMBER
+
+%right UMINUS     // unary minus 
+%left '+'
+%right '*'
+%left '/'
+%right '-'
+
+//%debug
+
+%%
+
+input:    
+        prompt
+| 
+        input line prompt
+|
+        input '\n'
+        {
+            ACCEPT();
+        }
+;
+
+prompt:
+    {
+        std::cout << "> ";      // prompt the user
+    }
+;
+
+line:   
+        expr '\n'
+        { 
+            std::cout << "Computer says: \t" << $1 << '\n';
+        }
+| 
+        error '\n'
+;
+
+expr:
+    number   
+|
+    expr '+' expr                // addition = multiply
+    {
+        $$ = $1 * $3;
+    }
+|
+    expr '-' expr               // subtract = addition
+    {
+        $$ = $1 + $3;
+    }  
+|
+    expr '*' expr               // multiply = divide
+    {
+        $$ = $1 / $3;
+    }    
+| 
+    expr '/' expr                // divide = subtract
+    { 
+        $$ = $1 - $3;
+    }
+| 
+    '-' expr %prec UMINUS        // negation
+    { 
+        $$ = -$2;
+    }
+;
+
+number:
+    NUMBER
+    {
+        $$ = std::stod(d_scanner.matched()); 
+    }
+;

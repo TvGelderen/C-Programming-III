@@ -1,0 +1,11 @@
+%class-name = "Scanner"
+%filenames scanner
+%interactive
+
+%%
+
+[\ \t]+                                  //remove whitespaces
+[\(\)]
+[[:digit:]]+           		            return Parser::NUMBER;
+
+.|\n                                    return matched()[0];
