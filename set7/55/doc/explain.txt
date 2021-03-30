@@ -1,0 +1,16 @@
+We need to create a interactive scanner that prompts the user with a '?' after each command. There is 1 caveat: one single cout statement can be used. 
+
+There are 4 commands:
+
+m + double
+s + double
+score
+score + nObs  -> where nObs is restricted to being positive integral.
+
+We implemented them by letting the scanner return INT and DOUBLE tokens, where INT is just a series of positive digits. Note that the double definition can also be an INT, so m 352 should be accepted by the program. We solved this using the doubleOrInt rule so a double/int can be reduced to a doubleOrInt. 
+
+Part a required us to use grammar only, we implemented a prompt rule. The prompt rule gives the desired result of '?'. 
+
+Part b required us to do the same but now by modifying Parser:lex(). To make this prompt we store the last read token and check wherter it was a '\n'. If so, a command has been entered and we prompt the user. The intial prompt is handled because we initialize d_previous by '\n'. 
+
+Part c asked for a third way. This can obviously be done by changing the scanner. We could for example provide the scanner with a ReadLineStream from the FBB library to handle the prompt or manually insert a cout << '?' statement similar to part b.

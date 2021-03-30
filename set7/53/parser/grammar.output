@@ -1,0 +1,158 @@
+[grammar (info)] Line 37: 
+Production Rules:
+   (precedences (shown between parentheses) were set by %prec;
+    are equal to the precedence of the rules' 1st terminal tokens;
+    or (if not shown) are equal to the default (max) precedence)
+1: input ->  <empty>
+2: input ->  expr
+3: expr (NR) ->  NR
+4: expr (VAR) ->  VAR
+5: expr ->  expr index
+6: expr ('-') ->  '-' expr
+7: expr ('+') ->  expr '+' expr
+8: expr ('*') ->  expr '*' expr
+9: index ('[') ->  '[' expr ']'
+10: input_$ ->  input
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: VAR
+   258: NR
+    43: '+'
+    42: '*'
+    45: '-'
+    91: '['
+    93: ']'
+
+
+Grammar States: 
+
+State 0:
+10: input_$ ->  . input 
+  0:   On input to state 1
+  1:   On expr to state 2
+  2:   On NR to state 3
+  3:   On VAR to state 4
+  4:   On '-' to state 5
+  Reduce by 1: input ->  . 
+
+
+State 1:
+10: input_$ -> input  . 
+
+
+State 2:
+2: input -> expr  . 
+5: expr -> expr  . index 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On index to state 6
+  1:   On '+' to state 7
+  2:   On '*' to state 8
+  3:   On '[' to state 9
+  Reduce by 2: input -> expr  . 
+
+
+State 3:
+3: expr -> NR  . 
+  Reduce by 3: expr -> NR  . 
+
+
+State 4:
+4: expr -> VAR  . 
+  Reduce by 4: expr -> VAR  . 
+
+
+State 5:
+6: expr -> '-'  . expr 
+  0:   On expr to state 10
+  1:   On NR to state 3
+  2:   On VAR to state 4
+  3:   On '-' to state 5
+
+
+State 6:
+5: expr -> expr index  . 
+  Reduce by 5: expr -> expr index  . 
+
+
+State 7:
+7: expr -> expr '+'  . expr 
+  0:   On expr to state 11
+  1:   On NR to state 3
+  2:   On VAR to state 4
+  3:   On '-' to state 5
+
+
+State 8:
+8: expr -> expr '*'  . expr 
+  0:   On expr to state 12
+  1:   On NR to state 3
+  2:   On VAR to state 4
+  3:   On '-' to state 5
+
+
+State 9:
+9: index -> '['  . expr ']' 
+  0:   On expr to state 13
+  1:   On NR to state 3
+  2:   On VAR to state 4
+  3:   On '-' to state 5
+
+
+State 10:
+6: expr -> '-' expr  . 
+5: expr -> expr  . index 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On index to state 6
+  1 (removed by precedence):   On '+' to state 7
+  2 (removed by precedence):   On '*' to state 8
+  3 (removed by precedence):   On '[' to state 9
+  Reduce by 6: expr -> '-' expr  . 
+
+
+State 11:
+7: expr -> expr '+' expr  . 
+5: expr -> expr  . index 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On index to state 6
+  1 (removed by precedence):   On '+' to state 7
+  2:   On '*' to state 8
+  3 (removed by precedence):   On '[' to state 9
+  Reduce by 7: expr -> expr '+' expr  . 
+
+
+State 12:
+8: expr -> expr '*' expr  . 
+5: expr -> expr  . index 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On index to state 6
+  1 (removed by precedence):   On '+' to state 7
+  2 (removed by precedence):   On '*' to state 8
+  3 (removed by precedence):   On '[' to state 9
+  Reduce by 8: expr -> expr '*' expr  . 
+
+
+State 13:
+9: index -> '[' expr  . ']' 
+5: expr -> expr  . index 
+7: expr -> expr  . '+' expr 
+8: expr -> expr  . '*' expr 
+  0:   On ']' to state 14
+  1:   On index to state 6
+  2:   On '+' to state 7
+  3:   On '*' to state 8
+  4:   On '[' to state 9
+
+
+State 14:
+9: index -> '[' expr ']'  . 
+  Reduce by 9: index -> '[' expr ']'  . 
+
+
+

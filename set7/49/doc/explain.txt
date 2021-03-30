@@ -1,0 +1,1 @@
+We defined a rule write that accepts the call to a function write, with a parameter list of 1 or more arguments.

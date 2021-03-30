@@ -1,4 +1,7 @@
+doc/summary.txt
+
 main.cc
 
-parser/grammar
 parser/parser.h
+parser/grammar
+scanner/lexer
