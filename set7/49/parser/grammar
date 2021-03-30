@@ -3,8 +3,6 @@
 %parsefun-source parse.cc
 %scanner ../scanner/Scanner.h
 
-%debug
-
 %token WRITE IDENT NUMBER
 
 %%

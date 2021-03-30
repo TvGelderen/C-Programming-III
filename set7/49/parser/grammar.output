@@ -1,4 +1,4 @@
-[grammar (info)] Line 38: 
+[grammar (info)] Line 36: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;

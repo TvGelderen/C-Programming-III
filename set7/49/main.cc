@@ -3,6 +3,6 @@
 int main()
 {
     Parser parser;
-    parser.setDebug(true);
+
     return parser.parse();
 }
