@@ -1,0 +1,1 @@
+We added expressions in the lexer file to recognize the 'list', 'exit' and 'quit' tokens. We adapted the grammar to parse these tokens in the definition of a line. The 'list' command executes the list function in parser.h which prints the the stored variables in alphabetic order.

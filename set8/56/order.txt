@@ -1,3 +1,4 @@
+./docs/explain.txt
 ./scanner/lexer
 ./parser/grammar
 ./parser/parser.h
