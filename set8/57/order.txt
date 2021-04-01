@@ -1,0 +1,11 @@
+./docs/explain.txt
+
+./scanner/lexer
+./parser/grammar
+
+./parser/parser.h
+./parser/roundedvalueof.cc
+./parser/bitwisenegate.cc
+./parser/calculatebinary.cc
+./parser/binaryoperator.cc
+./parser/assign.cc

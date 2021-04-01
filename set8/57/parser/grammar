@@ -14,8 +14,6 @@
         EXIT
         LIST
         IDENT
-        INCREMENT
-        DECREMENT
 
 %right  '='
         ASSIGN_ADD

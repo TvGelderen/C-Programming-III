@@ -28,9 +28,6 @@ list                                    return Tokens::LIST;
 \^=                                     return Tokens::ASSIGN_BITXOR;
 \&=                                     return Tokens::ASSIGN_BITAND;
 
-\+\+                                    return Tokens::INCREMENT;
-\-\-                                    return Tokens::DECREMENT;
-
 [\+\-\*\/\%\|\&\~\^]|\<\<|\>\>          return matched()[0];
 
 \n|.                                    return matched()[0];

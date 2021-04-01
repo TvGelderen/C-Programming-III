@@ -1,0 +1,1 @@
+We added all arithmetic operators of the C++ language. We implemented the calculation in a single function 'calculateBinary' that performs the calculation of two RuleValue objects depending on the token argument. The bitwise operators always use the 'roundedValueOf' function that rounds the 'valueOf' to the nearest integer. We extended the grammar to include all these cases.

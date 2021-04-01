@@ -1,4 +1,4 @@
-[grammar (info)] Line 203: 
+[grammar (info)] Line 201: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;
@@ -46,19 +46,17 @@ Symbolic Terminal tokens:
    258: EXIT
    259: LIST
    260: IDENT
-   261: INCREMENT
-   262: DECREMENT
     61: '='
-   263: ASSIGN_ADD
-   264: ASSIGN_SUB
-   265: ASSIGN_MUL
-   266: ASSIGN_DIV
-   267: ASSIGN_MOD
-   268: ASSIGN_BITLSHIFT
-   269: ASSIGN_BITRSHIFT
-   270: ASSIGN_BITOR
-   271: ASSIGN_BITXOR
-   272: ASSIGN_BITAND
+   261: ASSIGN_ADD
+   262: ASSIGN_SUB
+   263: ASSIGN_MUL
+   264: ASSIGN_DIV
+   265: ASSIGN_MOD
+   266: ASSIGN_BITLSHIFT
+   267: ASSIGN_BITRSHIFT
+   268: ASSIGN_BITOR
+   269: ASSIGN_BITXOR
+   270: ASSIGN_BITAND
     43: '+'
     45: '-'
     42: '*'
@@ -69,8 +67,8 @@ Symbolic Terminal tokens:
     94: '^'
     60: '<'
     62: '>'
-   273: uMinus
-   274: uNegate
+   271: uMinus
+   272: uNegate
     10: '\x0a'
    126: '~'
     40: '('

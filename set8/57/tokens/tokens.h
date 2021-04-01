@@ -10,8 +10,6 @@ struct Tokens
         EXIT,
         LIST,
         IDENT,
-        INCREMENT,
-        DECREMENT,
         ASSIGN_ADD,
         ASSIGN_SUB,
         ASSIGN_MUL,
