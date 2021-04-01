@@ -1,4 +1,4 @@
-[grammar (info)] Line 99: 
+[grammar (info)] Line 203: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;
@@ -13,11 +13,30 @@ Production Rules:
 8: expr (NUMBER) ->  NUMBER
 9: expr (IDENT) ->  IDENT
 10: expr (uMinus) ->  '-' expr
-11: expr ('+') ->  expr '+' expr
-12: expr ('-') ->  expr '-' expr
-13: expr ('(') ->  '(' expr ')'
-14: expr ('=') ->  expr '=' expr
-15: lines_$ ->  lines
+11: expr (uNegate) ->  '~' expr
+12: expr ('*') ->  expr '*' expr
+13: expr ('/') ->  expr '/' expr
+14: expr ('%') ->  expr '%' expr
+15: expr ('+') ->  expr '+' expr
+16: expr ('-') ->  expr '-' expr
+17: expr ('<') ->  expr '<' expr
+18: expr ('>') ->  expr '>' expr
+19: expr ('&') ->  expr '&' expr
+20: expr ('^') ->  expr '^' expr
+21: expr ('|') ->  expr '|' expr
+22: expr ('(') ->  '(' expr ')'
+23: expr ('=') ->  expr '=' expr
+24: expr (ASSIGN_ADD) ->  expr ASSIGN_ADD expr
+25: expr (ASSIGN_SUB) ->  expr ASSIGN_SUB expr
+26: expr (ASSIGN_MUL) ->  expr ASSIGN_MUL expr
+27: expr (ASSIGN_DIV) ->  expr ASSIGN_DIV expr
+28: expr (ASSIGN_MOD) ->  expr ASSIGN_MOD expr
+29: expr (ASSIGN_BITLSHIFT) ->  expr ASSIGN_BITLSHIFT expr
+30: expr (ASSIGN_BITRSHIFT) ->  expr ASSIGN_BITRSHIFT expr
+31: expr (ASSIGN_BITOR) ->  expr ASSIGN_BITOR expr
+32: expr (ASSIGN_BITXOR) ->  expr ASSIGN_BITXOR expr
+33: expr (ASSIGN_BITAND) ->  expr ASSIGN_BITAND expr
+34: lines_$ ->  lines
 
 
 Symbolic Terminal tokens:
@@ -27,11 +46,33 @@ Symbolic Terminal tokens:
    258: EXIT
    259: LIST
    260: IDENT
+   261: INCREMENT
+   262: DECREMENT
     61: '='
+   263: ASSIGN_ADD
+   264: ASSIGN_SUB
+   265: ASSIGN_MUL
+   266: ASSIGN_DIV
+   267: ASSIGN_MOD
+   268: ASSIGN_BITLSHIFT
+   269: ASSIGN_BITRSHIFT
+   270: ASSIGN_BITOR
+   271: ASSIGN_BITXOR
+   272: ASSIGN_BITAND
     43: '+'
     45: '-'
-   261: uMinus
+    42: '*'
+    47: '/'
+    37: '%'
+   124: '|'
+    38: '&'
+    94: '^'
+    60: '<'
+    62: '>'
+   273: uMinus
+   274: uNegate
     10: '\x0a'
+   126: '~'
     40: '('
     41: ')'
 
@@ -39,7 +80,7 @@ Symbolic Terminal tokens:
 Grammar States: 
 
 State 0:
-15: lines_$ ->  . lines 
+34: lines_$ ->  . lines 
   0:   On lines to state 1
   1:   On line to state 2
   2:   On expr to state 3
@@ -50,13 +91,14 @@ State 0:
   7:   On NUMBER to state 8
   8:   On IDENT to state 9
   9:   On '-' to state 10
-  10:   On '(' to state 11
+  10:   On '~' to state 11
+  11:   On '(' to state 12
 
 
 State 1:
-15: lines_$ -> lines  . 
+34: lines_$ -> lines  . 
 1: lines -> lines  . line 
-  0:   On line to state 12
+  0:   On line to state 13
   1:   On expr to state 3
   2:   On EXIT to state 4
   3:   On LIST to state 5
@@ -65,7 +107,8 @@ State 1:
   6:   On NUMBER to state 8
   7:   On IDENT to state 9
   8:   On '-' to state 10
-  9:   On '(' to state 11
+  9:   On '~' to state 11
+  10:   On '(' to state 12
 
 
 State 2:
@@ -75,28 +118,64 @@ State 2:
 
 State 3:
 3: line -> expr  . '\x0a' 
-11: expr -> expr  . '+' expr 
-12: expr -> expr  . '-' expr 
-14: expr -> expr  . '=' expr 
-  0:   On '\x0a' to state 13
-  1:   On '+' to state 14
-  2:   On '-' to state 15
-  3:   On '=' to state 16
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '\x0a' to state 14
+  1:   On '*' to state 15
+  2:   On '/' to state 16
+  3:   On '%' to state 17
+  4:   On '+' to state 18
+  5:   On '-' to state 19
+  6:   On '<' to state 20
+  7:   On '>' to state 21
+  8:   On '&' to state 22
+  9:   On '^' to state 23
+  10:   On '|' to state 24
+  11:   On '=' to state 25
+  12:   On ASSIGN_ADD to state 26
+  13:   On ASSIGN_SUB to state 27
+  14:   On ASSIGN_MUL to state 28
+  15:   On ASSIGN_DIV to state 29
+  16:   On ASSIGN_MOD to state 30
+  17:   On ASSIGN_BITLSHIFT to state 31
+  18:   On ASSIGN_BITRSHIFT to state 32
+  19:   On ASSIGN_BITOR to state 33
+  20:   On ASSIGN_BITXOR to state 34
+  21:   On ASSIGN_BITAND to state 35
 
 
 State 4:
 4: line -> EXIT  . '\x0a' 
-  0:   On '\x0a' to state 17
+  0:   On '\x0a' to state 36
 
 
 State 5:
 5: line -> LIST  . '\x0a' 
-  0:   On '\x0a' to state 18
+  0:   On '\x0a' to state 37
 
 
 State 6:
 6: line -> errTok_  . '\x0a' 
-  0:   On '\x0a' to state 19
+  0:   On '\x0a' to state 38
 
 
 State 7:
@@ -116,132 +195,1400 @@ State 9:
 
 State 10:
 10: expr -> '-'  . expr 
-  0:   On expr to state 20
+  0:   On expr to state 39
   1:   On NUMBER to state 8
   2:   On IDENT to state 9
   3:   On '-' to state 10
-  4:   On '(' to state 11
+  4:   On '~' to state 11
+  5:   On '(' to state 12
 
 
 State 11:
-13: expr -> '('  . expr ')' 
-  0:   On expr to state 21
+11: expr -> '~'  . expr 
+  0:   On expr to state 40
   1:   On NUMBER to state 8
   2:   On IDENT to state 9
   3:   On '-' to state 10
-  4:   On '(' to state 11
+  4:   On '~' to state 11
+  5:   On '(' to state 12
 
 
 State 12:
+22: expr -> '('  . expr ')' 
+  0:   On expr to state 41
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 13:
 1: lines -> lines line  . 
   Reduce by 1: lines -> lines line  . 
 
 
-State 13:
+State 14:
 3: line -> expr '\x0a'  . 
   Reduce by 3: line -> expr '\x0a'  . 
 
 
-State 14:
-11: expr -> expr '+'  . expr 
-  0:   On expr to state 22
-  1:   On NUMBER to state 8
-  2:   On IDENT to state 9
-  3:   On '-' to state 10
-  4:   On '(' to state 11
-
-
 State 15:
-12: expr -> expr '-'  . expr 
-  0:   On expr to state 23
+12: expr -> expr '*'  . expr 
+  0:   On expr to state 42
   1:   On NUMBER to state 8
   2:   On IDENT to state 9
   3:   On '-' to state 10
-  4:   On '(' to state 11
+  4:   On '~' to state 11
+  5:   On '(' to state 12
 
 
 State 16:
-14: expr -> expr '='  . expr 
-  0:   On expr to state 24
+13: expr -> expr '/'  . expr 
+  0:   On expr to state 43
   1:   On NUMBER to state 8
   2:   On IDENT to state 9
   3:   On '-' to state 10
-  4:   On '(' to state 11
+  4:   On '~' to state 11
+  5:   On '(' to state 12
 
 
 State 17:
+14: expr -> expr '%'  . expr 
+  0:   On expr to state 44
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 18:
+15: expr -> expr '+'  . expr 
+  0:   On expr to state 45
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 19:
+16: expr -> expr '-'  . expr 
+  0:   On expr to state 46
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 20:
+17: expr -> expr '<'  . expr 
+  0:   On expr to state 47
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 21:
+18: expr -> expr '>'  . expr 
+  0:   On expr to state 48
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 22:
+19: expr -> expr '&'  . expr 
+  0:   On expr to state 49
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 23:
+20: expr -> expr '^'  . expr 
+  0:   On expr to state 50
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 24:
+21: expr -> expr '|'  . expr 
+  0:   On expr to state 51
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 25:
+23: expr -> expr '='  . expr 
+  0:   On expr to state 52
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 26:
+24: expr -> expr ASSIGN_ADD  . expr 
+  0:   On expr to state 53
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 27:
+25: expr -> expr ASSIGN_SUB  . expr 
+  0:   On expr to state 54
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 28:
+26: expr -> expr ASSIGN_MUL  . expr 
+  0:   On expr to state 55
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 29:
+27: expr -> expr ASSIGN_DIV  . expr 
+  0:   On expr to state 56
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 30:
+28: expr -> expr ASSIGN_MOD  . expr 
+  0:   On expr to state 57
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 31:
+29: expr -> expr ASSIGN_BITLSHIFT  . expr 
+  0:   On expr to state 58
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 32:
+30: expr -> expr ASSIGN_BITRSHIFT  . expr 
+  0:   On expr to state 59
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 33:
+31: expr -> expr ASSIGN_BITOR  . expr 
+  0:   On expr to state 60
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 34:
+32: expr -> expr ASSIGN_BITXOR  . expr 
+  0:   On expr to state 61
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 35:
+33: expr -> expr ASSIGN_BITAND  . expr 
+  0:   On expr to state 62
+  1:   On NUMBER to state 8
+  2:   On IDENT to state 9
+  3:   On '-' to state 10
+  4:   On '~' to state 11
+  5:   On '(' to state 12
+
+
+State 36:
 4: line -> EXIT '\x0a'  . 
   Reduce by 4: line -> EXIT '\x0a'  . 
 
 
-State 18:
+State 37:
 5: line -> LIST '\x0a'  . 
   Reduce by 5: line -> LIST '\x0a'  . 
 
 
-State 19:
+State 38:
 6: line -> errTok_ '\x0a'  . 
   Reduce by 6: line -> errTok_ '\x0a'  . 
 
 
-State 20:
+State 39:
 10: expr -> '-' expr  . 
-11: expr -> expr  . '+' expr 
-12: expr -> expr  . '-' expr 
-14: expr -> expr  . '=' expr 
-  0 (removed by precedence):   On '+' to state 14
-  1 (removed by precedence):   On '-' to state 15
-  2 (removed by precedence):   On '=' to state 16
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
   Reduce by 10: expr -> '-' expr  . 
 
 
-State 21:
-13: expr -> '(' expr  . ')' 
-11: expr -> expr  . '+' expr 
-12: expr -> expr  . '-' expr 
-14: expr -> expr  . '=' expr 
-  0:   On ')' to state 25
-  1:   On '+' to state 14
-  2:   On '-' to state 15
-  3:   On '=' to state 16
+State 40:
+11: expr -> '~' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 11: expr -> '~' expr  . 
 
 
-State 22:
-11: expr -> expr '+' expr  . 
-11: expr -> expr  . '+' expr 
-12: expr -> expr  . '-' expr 
-14: expr -> expr  . '=' expr 
-  0 (removed by precedence):   On '+' to state 14
-  1 (removed by precedence):   On '-' to state 15
-  2 (removed by precedence):   On '=' to state 16
-  Reduce by 11: expr -> expr '+' expr  . 
+State 41:
+22: expr -> '(' expr  . ')' 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On ')' to state 63
+  1:   On '*' to state 15
+  2:   On '/' to state 16
+  3:   On '%' to state 17
+  4:   On '+' to state 18
+  5:   On '-' to state 19
+  6:   On '<' to state 20
+  7:   On '>' to state 21
+  8:   On '&' to state 22
+  9:   On '^' to state 23
+  10:   On '|' to state 24
+  11:   On '=' to state 25
+  12:   On ASSIGN_ADD to state 26
+  13:   On ASSIGN_SUB to state 27
+  14:   On ASSIGN_MUL to state 28
+  15:   On ASSIGN_DIV to state 29
+  16:   On ASSIGN_MOD to state 30
+  17:   On ASSIGN_BITLSHIFT to state 31
+  18:   On ASSIGN_BITRSHIFT to state 32
+  19:   On ASSIGN_BITOR to state 33
+  20:   On ASSIGN_BITXOR to state 34
+  21:   On ASSIGN_BITAND to state 35
 
 
-State 23:
-12: expr -> expr '-' expr  . 
-11: expr -> expr  . '+' expr 
-12: expr -> expr  . '-' expr 
-14: expr -> expr  . '=' expr 
-  0 (removed by precedence):   On '+' to state 14
-  1 (removed by precedence):   On '-' to state 15
-  2 (removed by precedence):   On '=' to state 16
-  Reduce by 12: expr -> expr '-' expr  . 
+State 42:
+12: expr -> expr '*' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 12: expr -> expr '*' expr  . 
 
 
-State 24:
-14: expr -> expr '=' expr  . 
-11: expr -> expr  . '+' expr 
-12: expr -> expr  . '-' expr 
-14: expr -> expr  . '=' expr 
-  0:   On '+' to state 14
-  1:   On '-' to state 15
-  2:   On '=' to state 16
-  Reduce by 14: expr -> expr '=' expr  . 
+State 43:
+13: expr -> expr '/' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 13: expr -> expr '/' expr  . 
 
 
-State 25:
-13: expr -> '(' expr ')'  . 
-  Reduce by 13: expr -> '(' expr ')'  . 
+State 44:
+14: expr -> expr '%' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 14: expr -> expr '%' expr  . 
+
+
+State 45:
+15: expr -> expr '+' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 15: expr -> expr '+' expr  . 
+
+
+State 46:
+16: expr -> expr '-' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 16: expr -> expr '-' expr  . 
+
+
+State 47:
+17: expr -> expr '<' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 17: expr -> expr '<' expr  . 
+
+
+State 48:
+18: expr -> expr '>' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 18: expr -> expr '>' expr  . 
+
+
+State 49:
+19: expr -> expr '&' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 19: expr -> expr '&' expr  . 
+
+
+State 50:
+20: expr -> expr '^' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 20: expr -> expr '^' expr  . 
+
+
+State 51:
+21: expr -> expr '|' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0 (removed by precedence):   On '*' to state 15
+  1 (removed by precedence):   On '/' to state 16
+  2 (removed by precedence):   On '%' to state 17
+  3 (removed by precedence):   On '+' to state 18
+  4 (removed by precedence):   On '-' to state 19
+  5 (removed by precedence):   On '<' to state 20
+  6 (removed by precedence):   On '>' to state 21
+  7 (removed by precedence):   On '&' to state 22
+  8 (removed by precedence):   On '^' to state 23
+  9 (removed by precedence):   On '|' to state 24
+  10 (removed by precedence):   On '=' to state 25
+  11 (removed by precedence):   On ASSIGN_ADD to state 26
+  12 (removed by precedence):   On ASSIGN_SUB to state 27
+  13 (removed by precedence):   On ASSIGN_MUL to state 28
+  14 (removed by precedence):   On ASSIGN_DIV to state 29
+  15 (removed by precedence):   On ASSIGN_MOD to state 30
+  16 (removed by precedence):   On ASSIGN_BITLSHIFT to state 31
+  17 (removed by precedence):   On ASSIGN_BITRSHIFT to state 32
+  18 (removed by precedence):   On ASSIGN_BITOR to state 33
+  19 (removed by precedence):   On ASSIGN_BITXOR to state 34
+  20 (removed by precedence):   On ASSIGN_BITAND to state 35
+  Reduce by 21: expr -> expr '|' expr  . 
+
+
+State 52:
+23: expr -> expr '=' expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 23: expr -> expr '=' expr  . 
+
+
+State 53:
+24: expr -> expr ASSIGN_ADD expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 24: expr -> expr ASSIGN_ADD expr  . 
+
+
+State 54:
+25: expr -> expr ASSIGN_SUB expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 25: expr -> expr ASSIGN_SUB expr  . 
+
+
+State 55:
+26: expr -> expr ASSIGN_MUL expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 26: expr -> expr ASSIGN_MUL expr  . 
+
+
+State 56:
+27: expr -> expr ASSIGN_DIV expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 27: expr -> expr ASSIGN_DIV expr  . 
+
+
+State 57:
+28: expr -> expr ASSIGN_MOD expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 28: expr -> expr ASSIGN_MOD expr  . 
+
+
+State 58:
+29: expr -> expr ASSIGN_BITLSHIFT expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 29: expr -> expr ASSIGN_BITLSHIFT expr  . 
+
+
+State 59:
+30: expr -> expr ASSIGN_BITRSHIFT expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 30: expr -> expr ASSIGN_BITRSHIFT expr  . 
+
+
+State 60:
+31: expr -> expr ASSIGN_BITOR expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 31: expr -> expr ASSIGN_BITOR expr  . 
+
+
+State 61:
+32: expr -> expr ASSIGN_BITXOR expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 32: expr -> expr ASSIGN_BITXOR expr  . 
+
+
+State 62:
+33: expr -> expr ASSIGN_BITAND expr  . 
+12: expr -> expr  . '*' expr 
+13: expr -> expr  . '/' expr 
+14: expr -> expr  . '%' expr 
+15: expr -> expr  . '+' expr 
+16: expr -> expr  . '-' expr 
+17: expr -> expr  . '<' expr 
+18: expr -> expr  . '>' expr 
+19: expr -> expr  . '&' expr 
+20: expr -> expr  . '^' expr 
+21: expr -> expr  . '|' expr 
+23: expr -> expr  . '=' expr 
+24: expr -> expr  . ASSIGN_ADD expr 
+25: expr -> expr  . ASSIGN_SUB expr 
+26: expr -> expr  . ASSIGN_MUL expr 
+27: expr -> expr  . ASSIGN_DIV expr 
+28: expr -> expr  . ASSIGN_MOD expr 
+29: expr -> expr  . ASSIGN_BITLSHIFT expr 
+30: expr -> expr  . ASSIGN_BITRSHIFT expr 
+31: expr -> expr  . ASSIGN_BITOR expr 
+32: expr -> expr  . ASSIGN_BITXOR expr 
+33: expr -> expr  . ASSIGN_BITAND expr 
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
+  9:   On '|' to state 24
+  10:   On '=' to state 25
+  11:   On ASSIGN_ADD to state 26
+  12:   On ASSIGN_SUB to state 27
+  13:   On ASSIGN_MUL to state 28
+  14:   On ASSIGN_DIV to state 29
+  15:   On ASSIGN_MOD to state 30
+  16:   On ASSIGN_BITLSHIFT to state 31
+  17:   On ASSIGN_BITRSHIFT to state 32
+  18:   On ASSIGN_BITOR to state 33
+  19:   On ASSIGN_BITXOR to state 34
+  20:   On ASSIGN_BITAND to state 35
+  Reduce by 33: expr -> expr ASSIGN_BITAND expr  . 
+
+
+State 63:
+22: expr -> '(' expr ')'  . 
+  Reduce by 22: expr -> '(' expr ')'  . 
 
 
 

@@ -14,10 +14,22 @@
         EXIT
         LIST
         IDENT
+        INCREMENT
+        DECREMENT
 
 %right  '='
-%left   '+' '-'
-%right  uMinus
+        ASSIGN_ADD
+        ASSIGN_SUB
+        ASSIGN_MUL
+        ASSIGN_DIV
+        ASSIGN_MOD
+        ASSIGN_BITLSHIFT
+        ASSIGN_BITRSHIFT
+        ASSIGN_BITOR
+        ASSIGN_BITXOR
+        ASSIGN_BITAND
+%left   '+' '-' '*' '/' '%' '|' '&' '^' '<' '>'
+%right  uMinus uNegate
 
 // %debug
 
@@ -74,16 +86,60 @@ expr:
         $$ = negate($2);
     }
 |
+    '~' expr            %prec uNegate
+    {
+        $$ = bitwisenegate($2);
+    }
+|
+    expr '*' expr
+    {
+        $$ = binaryOperator($1, $3, '*');
+    }
+|
+    expr '/' expr
+    {
+        $$ = binaryOperator($1, $3, '/');
+    }
+|
+    expr '%' expr
+    {
+        $$ = binaryOperator($1, $3, '%');
+    }
+|
     expr '+' expr
     {
-        $$ = add($1, $3);
+        $$ = binaryOperator($1, $3, '+');
     }    
 |
     expr '-' expr
     {
-        $$ = sub($1, $3);
-
+        $$ = binaryOperator($1, $3, '-');
+    }
+|
+    expr '<' expr
+    {
+        $$ = binaryOperator($1, $3, '<');
+    }
+|
+    expr '>' expr
+    {
+        $$ = binaryOperator($1, $3, '>');
+    }
+|
+    expr '&' expr
+    {
+        $$ = binaryOperator($1, $3, '&');
     }    
+|
+    expr '^' expr
+    {
+        $$ = binaryOperator($1, $3, '^');
+    }
+|
+    expr '|' expr
+    {
+        $$ = binaryOperator($1, $3, '|');
+    }
 |
     '(' expr ')'
     {
@@ -92,7 +148,56 @@ expr:
 |
     expr '=' expr
     {
-        $$ = assign($1, $3);
+        $$ = assign($1, $3, '=');
+    }
+|
+    expr ASSIGN_ADD expr
+    {
+        $$ = assign($1, $3, '+');
+    }
+|
+    expr ASSIGN_SUB expr
+    {
+        $$ = assign($1, $3, '-');
+    }
+|
+    expr ASSIGN_MUL expr
+    {
+        $$ = assign($1, $3, '*');
+    }
+|
+    expr ASSIGN_DIV expr
+    {
+        $$ = assign($1, $3, '/');
+    }
+|
+    expr ASSIGN_MOD expr
+    {
+        $$ = assign($1, $3, '%');
+    }
+|
+    expr ASSIGN_BITLSHIFT expr
+    {
+        $$ = assign($1, $3, '<');
+    }
+|
+    expr ASSIGN_BITRSHIFT expr
+    {
+        $$ = assign($1, $3, '>');
+    }
+|
+    expr ASSIGN_BITOR expr
+    {
+        $$ = assign($1, $3, '|');
+    }
+|
+    expr ASSIGN_BITXOR expr
+    {
+        $$ = assign($1, $3, '^');
+    }
+|
+    expr ASSIGN_BITAND expr
+    {
+        $$ = assign($1, $3, '&');
     }
 ;
-

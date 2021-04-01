@@ -10,7 +10,20 @@ struct Tokens
         EXIT,
         LIST,
         IDENT,
+        INCREMENT,
+        DECREMENT,
+        ASSIGN_ADD,
+        ASSIGN_SUB,
+        ASSIGN_MUL,
+        ASSIGN_DIV,
+        ASSIGN_MOD,
+        ASSIGN_BITLSHIFT,
+        ASSIGN_BITRSHIFT,
+        ASSIGN_BITOR,
+        ASSIGN_BITXOR,
+        ASSIGN_BITAND,
         uMinus,
+        uNegate,
     };
 
 };

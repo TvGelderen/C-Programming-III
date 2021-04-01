@@ -1,6 +1,7 @@
 %filenames scanner
 %interactive
 
+
 digits      [0-9]+
 optdigits   [0-9]*
 exp         [eE][-+]?{digits}
@@ -15,5 +16,21 @@ exp         [eE][-+]?{digits}
 exit|quit                               return Tokens::EXIT;
 list                                    return Tokens::LIST;
 [[:alpha:]_][[:alnum:]_]*               return Tokens::IDENT;
+
+\+=                                     return Tokens::ASSIGN_ADD;
+\-=                                     return Tokens::ASSIGN_SUB;
+\*=                                     return Tokens::ASSIGN_MUL;
+\/=                                     return Tokens::ASSIGN_DIV;
+\%=                                     return Tokens::ASSIGN_MOD;
+\<\<=                                   return Tokens::ASSIGN_BITLSHIFT;
+\>\>=                                   return Tokens::ASSIGN_BITRSHIFT;
+\|=                                     return Tokens::ASSIGN_BITOR;
+\^=                                     return Tokens::ASSIGN_BITXOR;
+\&=                                     return Tokens::ASSIGN_BITAND;
+
+\+\+                                    return Tokens::INCREMENT;
+\-\-                                    return Tokens::DECREMENT;
+
+[\+\-\*\/\%\|\&\~\^]|\<\<|\>\>          return matched()[0];
 
 \n|.                                    return matched()[0];

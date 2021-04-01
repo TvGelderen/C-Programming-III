@@ -56,10 +56,14 @@ class Parser: public ParserBase
         void done();
         void prompt();
 
-        RuleValue &add(RuleValue &lvalue, RuleValue &rvalue);
-        RuleValue &assign(RuleValue &lvalue, RuleValue &rvalue);
+        RuleValue &binaryOperator(RuleValue &lvalue, RuleValue &rvalue, char token);
+        RuleValue &assign(RuleValue &lvalue, RuleValue &rvalue, char token);
+
         RuleValue &negate(RuleValue &e);
-        RuleValue &sub(RuleValue &lvalue, RuleValue &rvalue);
+        RuleValue &bitwisenegate(RuleValue &e);
+
+        double calculateBinary(RuleValue &lvalue, RuleValue &rvalue, char token);
+
         RuleValue value();
         RuleValue variable();
 
