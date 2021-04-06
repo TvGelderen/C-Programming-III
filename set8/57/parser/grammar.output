@@ -1,4 +1,4 @@
-[grammar (info)] Line 201: 
+[grammar (info)] Line 206: 
 Production Rules:
    (precedences (shown between parentheses) were set by %prec;
     are equal to the precedence of the rules' 1st terminal tokens;
@@ -57,16 +57,16 @@ Symbolic Terminal tokens:
    268: ASSIGN_BITOR
    269: ASSIGN_BITXOR
    270: ASSIGN_BITAND
+   124: '|'
+    94: '^'
+    38: '&'
+    60: '<'
+    62: '>'
     43: '+'
     45: '-'
     42: '*'
     47: '/'
     37: '%'
-   124: '|'
-    38: '&'
-    94: '^'
-    60: '<'
-    62: '>'
    271: uMinus
    272: uNegate
     10: '\x0a'
@@ -761,9 +761,9 @@ State 45:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
   3 (removed by precedence):   On '+' to state 18
   4 (removed by precedence):   On '-' to state 19
   5 (removed by precedence):   On '<' to state 20
@@ -808,9 +808,9 @@ State 46:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
   3 (removed by precedence):   On '+' to state 18
   4 (removed by precedence):   On '-' to state 19
   5 (removed by precedence):   On '<' to state 20
@@ -855,11 +855,11 @@ State 47:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
-  3 (removed by precedence):   On '+' to state 18
-  4 (removed by precedence):   On '-' to state 19
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
   5 (removed by precedence):   On '<' to state 20
   6 (removed by precedence):   On '>' to state 21
   7 (removed by precedence):   On '&' to state 22
@@ -902,11 +902,11 @@ State 48:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
-  3 (removed by precedence):   On '+' to state 18
-  4 (removed by precedence):   On '-' to state 19
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
   5 (removed by precedence):   On '<' to state 20
   6 (removed by precedence):   On '>' to state 21
   7 (removed by precedence):   On '&' to state 22
@@ -949,13 +949,13 @@ State 49:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
-  3 (removed by precedence):   On '+' to state 18
-  4 (removed by precedence):   On '-' to state 19
-  5 (removed by precedence):   On '<' to state 20
-  6 (removed by precedence):   On '>' to state 21
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
   7 (removed by precedence):   On '&' to state 22
   8 (removed by precedence):   On '^' to state 23
   9 (removed by precedence):   On '|' to state 24
@@ -996,14 +996,14 @@ State 50:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
-  3 (removed by precedence):   On '+' to state 18
-  4 (removed by precedence):   On '-' to state 19
-  5 (removed by precedence):   On '<' to state 20
-  6 (removed by precedence):   On '>' to state 21
-  7 (removed by precedence):   On '&' to state 22
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
   8 (removed by precedence):   On '^' to state 23
   9 (removed by precedence):   On '|' to state 24
   10 (removed by precedence):   On '=' to state 25
@@ -1043,15 +1043,15 @@ State 51:
 31: expr -> expr  . ASSIGN_BITOR expr 
 32: expr -> expr  . ASSIGN_BITXOR expr 
 33: expr -> expr  . ASSIGN_BITAND expr 
-  0 (removed by precedence):   On '*' to state 15
-  1 (removed by precedence):   On '/' to state 16
-  2 (removed by precedence):   On '%' to state 17
-  3 (removed by precedence):   On '+' to state 18
-  4 (removed by precedence):   On '-' to state 19
-  5 (removed by precedence):   On '<' to state 20
-  6 (removed by precedence):   On '>' to state 21
-  7 (removed by precedence):   On '&' to state 22
-  8 (removed by precedence):   On '^' to state 23
+  0:   On '*' to state 15
+  1:   On '/' to state 16
+  2:   On '%' to state 17
+  3:   On '+' to state 18
+  4:   On '-' to state 19
+  5:   On '<' to state 20
+  6:   On '>' to state 21
+  7:   On '&' to state 22
+  8:   On '^' to state 23
   9 (removed by precedence):   On '|' to state 24
   10 (removed by precedence):   On '=' to state 25
   11 (removed by precedence):   On ASSIGN_ADD to state 26

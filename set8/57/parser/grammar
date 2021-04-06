@@ -26,7 +26,12 @@
         ASSIGN_BITOR
         ASSIGN_BITXOR
         ASSIGN_BITAND
-%left   '+' '-' '*' '/' '%' '|' '&' '^' '<' '>'
+%left '|'
+%left '^'
+%left '&'
+%left '<' '>'
+%left '+' '-'
+%left '*' '/' '%'
 %right  uMinus uNegate
 
 // %debug
