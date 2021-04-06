@@ -1,0 +1,32 @@
+%filenames scanner
+//%interactive
+
+digits      [0-9]+
+optdigits   [0-9]*
+exp         [eE][-+]?{digits}
+
+%%
+
+[ \t]+
+
+{digits}                                |
+{digits}"."{optdigits}{exp}?            |
+{optdigits}"."{digits}{exp}?            return Parser::NUMBER;
+exp                                     return Parser::EXP;
+ln                                      return Parser::LN;
+sin                                     return Parser::SIN;
+cos                                     return Parser::COS;
+tan                                     return Parser::TAN;
+asin                                    return Parser::ASIN;
+acos                                    return Parser::ACOS;
+atan                                    return Parser::ATAN;
+sqrt                                    return Parser::SQRT;
+abs                                     return Parser::ABS;
+rad                                     return Parser::RAD;
+deg                                     return Parser::DEG;
+grad                                    return Parser::GRAD;
+e                                       return Parser::E;
+pi                                      return Parser::PI;
+[[:alpha:]_][[:alnum:]_]*               return Parser::IDENT;
+
+\n|.                                    return matched()[0];
